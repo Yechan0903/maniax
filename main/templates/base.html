@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>{% block title %}My App{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/styles.css' %}"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="{% url 'rankings' %}">Home</a></li>
+        <li><a href="{% url 'myinfo' %}">My Info</a></li>
+      </ul>
+    </nav>
+    <div class="content">{% block content %} {% endblock %}</div>
+  </body>
+</html>
