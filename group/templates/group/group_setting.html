@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<h1>그룹 설정 - {{ group.title }}</h1>
+<a href="{% url 'group_room' group.id %}" class="btn btn-primary">Group Room</a>
+
+{% if is_master %}
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="btn btn-success">Update</button>
+</form>
+<a href="{% url 'kick_out_user' group.id %}" class="btn btn-warning"
+  >Kick Out User</a
+>
+<a href="{% url 'change_group_master' group.id %}" class="btn btn-info"
+  >Change Group Master</a
+>
+<form
+  method="post"
+  action="{% url 'remove_group' group.id %}"
+  style="display: inline"
+>
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Remove Group</button>
+</form>
+{% else %}
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Resign Group</button>
+</form>
+{% endif %} {% endblock %}
