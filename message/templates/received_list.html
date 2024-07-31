@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Received Messages{% endblock %}
+{% block content %}
+
+    {% for received_message in received_messages %}
+        <p>{{ received_message.sender }}</p>
+        <p>{{ received_message.content }}</p>
+        <p>{{ received_message.timestamp }}</p>
+    {% endfor %}
+    
+{% endblock %}
