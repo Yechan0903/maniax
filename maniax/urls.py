@@ -26,5 +26,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup_view, name='signup'),
     path('login_or_signup/', views.login_or_signup_view, name='login_or_signup'),
+    path('relationship/', include("relationship.urls")),
     path('message/', include('message.urls')),
 ]

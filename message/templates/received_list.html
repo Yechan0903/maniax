@@ -2,10 +2,14 @@
 {% block title %}Received Messages{% endblock %}
 {% block content %}
 
+    <p><a href="{% url 'sent_list' %}">보낸 메시지함</a></p>
+    
     {% for received_message in received_messages %}
         <p>{{ received_message.sender }}</p>
         <p>{{ received_message.content }}</p>
         <p>{{ received_message.timestamp }}</p>
     {% endfor %}
     
+    
+
 {% endblock %}

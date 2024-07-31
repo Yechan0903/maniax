@@ -16,7 +16,7 @@
         <td>{{ screen_time.rank }}</td>
         <td>{{ screen_time.user.username }}</td>
         <td>{{ screen_time.total_minutes|display_time }}</td>
-        <td><a href="{% url 'write_message' screen_time.user.username %}">메세지 작성</a></td>
+        <td><a href="{% url 'user_profile' user_id=screen_time.user.id %}">프로필</a>
       </tr>
       {% endfor %}
     </table>

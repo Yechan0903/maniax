@@ -2,7 +2,7 @@
 {% block title %}Write Message{% endblock %}
 {% block content %}
 
-<form action="{%url 'send_message' username %}" method="post">
+<form action="{%url 'send_message' user_id %}" method="post">
     {% csrf_token %}
     <textarea name="content" placeholder="메세지를 작성하세요"></textarea>
     <button type="submit">전송</button>

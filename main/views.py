@@ -1,17 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import ScreenTimeForm, CustomUserCreationForm
-
-def send_message(request, username):
-    receiver = get_object_or_404(settings.AUTH_USER_MODEL, username=username)
-    if request.method == "POST":
-        content = request.POST.get('content')
-        message = Message(sender=request.user, receiver=receiver, content=content)
-        message.save()
-        return redirect('profile', username=username)
-    return render(request, 'send_message.html', {'receiver': receiver})
 
 def rankings_view(request):
     screen_times = ScreenTime.objects.order_by('-total_minutes')

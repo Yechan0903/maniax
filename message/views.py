@@ -7,12 +7,12 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 #메세지 작성 화면 보여주기
-def write_message(request, username):
-    return render(request, 'write_message.html', {'username':username})
+def write_message(request, user_id):
+    return render(request, 'write_message.html', {'user_id':user_id})
 
 #메세지 전송하기
-def send_message(request, username):
-    receiver = get_object_or_404(User, username=username)
+def send_message(request, user_id):
+    receiver = get_object_or_404(User, id=user_id)
     if request.method == "POST":
         content = request.POST.get('content')
         if content:
@@ -30,4 +30,9 @@ def send_message(request, username):
 def received_list(request):
     received_messages= message.objects.filter(receiver=request.user).order_by('-timestamp')
     return render(request, 'received_list.html', {'received_messages':received_messages})
+
+#보낸 메세지 목록 확인
+def sent_list(request):
+    sent_messages= message.objects.filter(sender=request.user).order_by('-timestamp')
+    return render(request, 'sent_list.html', {'sent_messages':sent_messages})
 

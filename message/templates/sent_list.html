@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Received Messages{% endblock %}
+{% block content %}
+
+    <p><a href="{% url 'received_list' %}">받은 메시지함</a></p>
+    {% for sent_message in sent_messages %}
+        <p>{{ sent_message.receiver }}</p>
+        <p>{{ sent_message.content }}</p>
+        <p>{{ sent_message.timestamp }}</p>
+    {% endfor %}
+    
+{% endblock %}

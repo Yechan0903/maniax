@@ -2,8 +2,14 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class CustomUser(AbstractUser):
-    pass
-
+    following = models.ManyToManyField(
+        "self", #User 인스턴스가 다른 인스턴스 참조
+        verbose_name="팔로우 중인 사용자들",
+        related_name="followers",
+        symmetrical=False,
+        through="relationship.Relationship"
+    )
+    
 class ScreenTime(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='screen_time')
     total_minutes = models.PositiveIntegerField(default=0)  # 스크린 타임 총 분
@@ -21,3 +27,6 @@ class ScreenTime(models.Model):
             screen_time.save()
 
     rank = models.PositiveIntegerField(default=0)  # 랭킹
+    
+
+    
