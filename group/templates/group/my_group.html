@@ -1,22 +1,27 @@
 {% extends 'base.html' %} {% block content %}
-<h1>내가 가입한 그룹</h1>
-<a href="{% url 'all_group' %}" class="btn btn-primary">Add Group</a>
 
-{% if page_obj.object_list %}
-<div class="group-list">
-  {% for group in page_obj %}
-  <div class="group-box">
-    <h2>{{ group.title }}</h2>
-    <p>인원수: {{ group.users.count }}</p>
-    <p>방장: {{ group.master.username }}</p>
-    {% load time_filters %}
-    <p>그룹 목표 시간: {{ group.goals|display_time}}</p>
-    <p>공개 여부: {% if group.is_private %}비공개{% else %}공개{% endif %}</p>
-    <a href="{% url 'group_room' group.id %}" class="btn btn-secondary"
-      >View Group</a
-    >
+<div class="groupContainer">
+  <div class="groupHeader">
+    <div class="groupTitle">내가 가입한 그룹</div>
+    <a href="{% url 'all_group' %}" class="add-group">그룹 추가 +</a>
   </div>
-  {% endfor %}
+  {% if page_obj.object_list %}
+  <div class="group-list">
+    {% for group in page_obj %}
+    <a href="{% url 'group_room' group.id %}" class="group-item">
+      <div class="group-name">{{ group.title }}</div>
+      <div class="group-details">
+        <div class="member-count">{{ group.users.count }}명</div>
+        {% load time_filters %}
+        <div class="member-count">{{ group.goals|display_time}}</div>
+        <div class="group-info">{{ group.master.username }}</div>
+        <div class="lock-icon">
+          {% if group.is_private %}🔒{% else %}{% endif %}
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
 </div>
 
 <div class="pagination">

@@ -1,24 +1,35 @@
 {% extends 'base.html' %} {% block content %}
-<h1>전체 그룹</h1>
-<a href="{% url 'my_group' %}" class="btn btn-primary">My Group</a>
-<a href="{% url 'search_group' %}" class="btn btn-secondary">Search Group</a>
-<a href="{% url 'create_group' %}" class="btn btn-success">Create Group</a>
-
-{% if page_obj.object_list %}
-<div class="group-list">
-  {% for group in page_obj %}
-  <div class="group-box">
-    <h2>{{ group.title }}</h2>
-    <p>인원수: {{ group.users.count }}</p>
-    <p>방장: {{ group.master.username }}</p>
-    {% load time_filters %}
-    <p>그룹 목표 시간: {{ group.goals|display_time}}</p>
-    <p>공개 여부: {% if group.is_private %}비공개{% else %}공개{% endif %}</p>
-    <a href="{% url 'account_group' group.id %}" class="btn btn-secondary"
-      >View Group</a
+<div class="groupAddContainer">
+  <header class="groupAddHeader">
+    <a
+      href="{% url 'my_group' %}"
+      class="groupAdd-back-button"
+      id="cancelButton"
+      >←</a
     >
+    <a class="groupAddTitle">그룹</a>
+    <a href="{% url 'search_group' %}" class="groupAdd-search-button">
+      <i class="fas fa-search"></i>
+    </a>
+  </header>
+
+  <p class="groupAddNotice">* 그룹이 생성된 날짜순으로 정렬됩니다.</p>
+  {% if page_obj.object_list %}
+  <div class="groupAdd-list">
+    {% for group in page_obj %}
+    <a href="{% url 'account_group' group.id %}" class="groupAdd-item">
+      <h2>{{ group.title }}</h2>
+      <p>{{ group.users.count }}명</p>
+      <p>{{ group.master.username }}</p>
+      {% load time_filters %}
+      <p>{{ group.goals|display_time}}</p>
+      <p class="private">
+        {% if group.is_private %}비공개 🔒{% else %}공개{% endif %}
+      </p>
+    </a>
+    {% endfor %}
   </div>
-  {% endfor %}
+  <a href="{% url 'create_group' %}" class="add-button">+</a>
 </div>
 
 <div class="pagination">
