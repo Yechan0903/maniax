@@ -1,28 +1,57 @@
 {% extends 'base.html' %} {% block title %}Rankings{%endblock%}{%block content%}
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head> </head>
   <body>
-    <h1>Rankings</h1>
-    {% if screen_times %}
-    <table>
-      <tr>
-        <th>Rank</th>
-        <th>User</th>
-        <th>Screen Time</th>
-      </tr>
-      {% load time_filters %} {% for screen_time in screen_times %}
-      <tr>
-        <td>{{ screen_time.rank }}</td>
-        <td>{{ screen_time.user.username }}</td>
-        <td>{{ screen_time.total_minutes|display_time }}</td>
-      </tr>
-      {% endfor %}
-    </table>
-    {% else %}
+    <header class="screen-header">
+      <img id="logo" src="{% static 'images/maniacx.png' %}" />
+      {% if user.is_authenticated %}
+      <div class="homeFilter">
+        <button class="filter-btn active" id="allBtn">Total</button>
+      </div>
+      {% else %}
+      <a href="{% url 'login' %}"><button>Login</button></a>
+      {% endif %}
+    </header>
+
+    <div class="timerSection">
+      {% if user.is_authenticated %} {% load time_filters %}
+      <div class="timer" onclick="openOverlay()">
+        {{user.screen_time.total_minutes|display_time}}
+      </div>
+      {% else %}
+      <a href="{% url 'login' %}" class="timer">00:00</a>
+      {% endif %}
+    </div>
+    <div id="overlay" class="overlay">
+      <div class="overlay-content">
+        <span class="close-btn" onclick="closeOverlay()">&times;</span>
+        <form method="post" class="my_screen_time">
+          {% csrf_token %} {{ form.hours }}:{{ form.minutes }}
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+    <div class="follwertotal">Follwer</div>
+    {% if screen_times %}{% for screen_time in screen_times %}
+    <div id="content">
+      <div id="allContent">
+        <div class="usageList">
+          <a href="#" class="ranking-item">
+            <div class="rank-number">{{ screen_time.rank }}</div>
+            <div class="rank-name">{{ screen_time.user.username }}</div>
+            {% load time_filters %}
+            <div class="rank-time">
+              {{ screen_time.total_minutes|display_time }}
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %} {% else %}
     <p>No users found.</p>
     {% endif %}
-    <a href="{% url 'myinfo' %}">My Info</a>
   </body>
 </html>
 {%endblock%}

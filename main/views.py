@@ -3,10 +3,30 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import CustomUser, ScreenTime
 from .forms import ScreenTimeForm, CustomUserCreationForm
+from django.contrib.auth.models import User
 
 def rankings_view(request):
     screen_times = ScreenTime.objects.order_by('-total_minutes')
-    return render(request, 'rankings.html', {'screen_times': screen_times})
+    
+    context = {'screen_times': screen_times}
+    
+    user = request.user
+    if request.user.is_authenticated:
+        screen_time, created = ScreenTime.objects.get_or_create(user=user)
+        if created:
+            screen_time.total_minutes = 0
+            screen_time.save()
+        if request.method == 'POST':
+            form = ScreenTimeForm(request.POST, instance=screen_time)
+            if form.is_valid():
+                form.save()
+                ScreenTime.update_rankings()
+                return redirect('rankings')
+        else:
+            form = ScreenTimeForm(instance=screen_time)
+        return render(request, 'rankings.html', {'screen_times': screen_times, 'form': form})
+        
+    return render(request, 'rankings.html', context)
 
 @login_required
 def myinfo_view(request):

@@ -8,7 +8,11 @@ def display_time(total_minutes):
         total_minutes = int(total_minutes)
         hours = total_minutes // 60
         minutes = total_minutes % 60
-        return f"{hours} hours {minutes} minutes"
+        if 0 <= hours < 10:
+            hours = f"0{hours}"
+        if 0 <= minutes < 10:
+            minutes = f"0{minutes}"
+        return f"{hours} : {minutes}"
     except (ValueError, TypeError):
         return "Invalid time"
 

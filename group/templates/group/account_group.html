@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <h1>그룹 가입하기 - {{ group.title }}</h1>
-<a href="{% url 'all_group' %}" class="btn btn-secondary">Back</a>
+<button onclick="window.history.back()">Go Back</button>
 
 <div>
   <h2>그룹 정보</h2>
