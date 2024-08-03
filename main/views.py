@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser, ScreenTime
+from .models import *
 from .forms import ScreenTimeForm, CustomUserCreationForm
 from django.contrib.auth.models import User
+from relationship.models import Relationship
 
 def rankings_view(request):
     screen_times = ScreenTime.objects.order_by('-total_minutes')
@@ -78,3 +79,23 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     return redirect('rankings')
+
+def send_message(request, username):
+    receiver = get_object_or_404(settings.AUTH_USER_MODEL, username=username)
+    if request.method == "POST":
+        content = request.POST.get('content')
+        message = Message(sender=request.user, receiver=receiver, content=content)
+        message.save()
+        return redirect('profile', username=username)
+    return render(request, 'send_message.html', {'receiver': receiver})
+
+@login_required
+def following_rankings_view(request):
+    user = get_object_or_404(CustomUser, id=request.user.id)
+    following_user_ids = Relationship.objects.filter(from_user=user).values_list('to_user_id')
+    screen_times = ScreenTime.objects.filter(user__id__in=following_user_ids).order_by('-total_minutes')
+    context = {
+        'user':user,
+        'screen_times':screen_times,
+    }
+    return render(request, 'following_rankings.html', context)

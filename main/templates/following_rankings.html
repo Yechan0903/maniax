@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block title %}Rankings{%endblock%}{%block content%}
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <h1>{{ user.username }}'s Following Rankings</h1>
+    {% if screen_times %}
+    <table>
+      <tr>
+        <th>Rank</th>
+        <th>User</th>
+        <th>Screen Time</th>
+      </tr>
+      {% load time_filters %} {% for screen_time in screen_times %}
+      <tr>
+        <td>{{ screen_time.rank }}</td>
+        <td>{{ screen_time.user.username }}</td>
+        <td>{{ screen_time.total_minutes|display_time }}</td>
+        <td>
+          <a href="{% url 'user_profile' user_id=screen_time.user.id %}"
+            >프로필</a
+          >
+        </td>
+      </tr>
+
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No users found.</p>
+    {% endif %}
+    <a href="{% url 'myinfo' %}">My Info</a>
+  </body>
+</html>
+{%endblock%}

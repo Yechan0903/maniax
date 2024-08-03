@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %} User Profile {% endblock %}
+
+<!--자기자신을 팔로우하는 것을 방지 -->
+{%block content%}
+<p>{{ target_user.username }}의 프로필</p>
+<p>총 스크린타임: {{ screen_time.total_minutes }}</p>
+{% if target_user != request.user %}
+<form action="{% url 'follow' user_id=target_user.id %}" method="POST">
+  {%csrf_token%}
+  <button type="submit">
+    {% if target_user in request.user.following.all %} 언팔로우 {% else %}
+    팔로우 {% endif %}
+  </button>
+</form>
+{% endif %}
+
+<form action="{% url 'write_message' user_id=target_user.id %}" method="POST">
+  {%csrf_token%}
+  <button type="submit">쪽지 보내기</button>
+</form>
+
+{% endblock %}

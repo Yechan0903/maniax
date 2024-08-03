@@ -1,8 +1,15 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from relationship.models import Relationship
 
 class CustomUser(AbstractUser):
-    pass
+    following = models.ManyToManyField(
+        "self", #User 인스턴스가 다른 인스턴스 참조
+        verbose_name="팔로우 중인 사용자들",
+        related_name="followers",
+        symmetrical=False,
+        through="relationship.Relationship"
+    )
 
 class ScreenTime(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='screen_time')

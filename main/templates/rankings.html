@@ -33,12 +33,17 @@
         </form>
       </div>
     </div>
-    <div class="follwertotal">Follwer</div>
+    <div class="follwertotal">
+      <a href="{% url 'following_rankings_view' %}">Following Rankings</a>
+    </div>
     {% if screen_times %}{% for screen_time in screen_times %}
     <div id="content">
       <div id="allContent">
         <div class="usageList">
-          <a href="#" class="ranking-item">
+          <a
+            href="{% url 'user_profile' user_id=screen_time.user.id %}"
+            class="ranking-item"
+          >
             <div class="rank-number">{{ screen_time.rank }}</div>
             <div class="rank-name">{{ screen_time.user.username }}</div>
             {% load time_filters %}

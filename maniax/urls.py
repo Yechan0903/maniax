@@ -27,4 +27,7 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('login_or_signup/', views.login_or_signup_view, name='login_or_signup'),
     path('group/', include('group.urls')),
+    path('message/', include('message.urls')),
+    path('relationship/', include("relationship.urls")),
+    path('following_rankings/', views.following_rankings_view, name="following_rankings_view")
 ]
