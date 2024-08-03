@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'message',
-    'relationship'
+    'relationship',
+    'group',
 ]
 
 AUTH_USER_MODEL = 'main.CustomUser'
@@ -120,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Add this line if it's not already there
 STATICFILES_DIRS = [BASE_DIR / "static"]

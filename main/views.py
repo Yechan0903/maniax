@@ -1,12 +1,24 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import *
+from relationship.models import Relationship
 from .forms import ScreenTimeForm, CustomUserCreationForm
 
 def rankings_view(request):
     screen_times = ScreenTime.objects.order_by('-total_minutes')
     return render(request, 'rankings.html', {'screen_times': screen_times})
+
+@login_required
+def following_rankings_view(request):
+    user = get_object_or_404(CustomUser, id=request.user.id)
+    following_user_ids = Relationship.objects.filter(from_user=user).values_list('to_user_id')
+    screen_times = ScreenTime.objects.filter(user__id__in=following_user_ids).order_by('-total_minutes')
+    context = {
+        'user':user,
+        'screen_times':screen_times,
+    }
+    return render(request, 'following_rankings.html', context)
 
 @login_required
 def myinfo_view(request):

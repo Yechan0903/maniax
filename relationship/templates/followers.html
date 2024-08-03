@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Followers{% endblock %}
+{% block content %}
+
+{% for relationship in relationships%}
+    <a href = "{%url 'user_profile' user_id=relationship.from_user.id %}">
+        <p>{{ relationship.from_user.username }}</p>
+    </a>
+{% endfor %}
+{% endblock %}

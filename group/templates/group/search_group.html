@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block content %}
+<h1>그룹 검색</h1>
+<a href="{% url 'all_group' %}" class="btn btn-secondary">All Group</a>
+
+<form method="get">
+  <input
+    type="text"
+    name="q"
+    value="{{ query }}"
+    placeholder="그룹명으로 검색"
+  />
+  <button type="submit" class="btn btn-primary">검색</button>
+</form>
+
+{% if query %} {% if page_obj.object_list %}
+<ul>
+  {% for group in page_obj.object_list %}
+  <li>
+    {% load time_filters %}
+    <a href="{% url 'account_group' group.id %}">
+      {{ group.title }} - {{ group.users.count }}명 - 방장:
+      {{group.master.username }} - 목표 시간: {{ group.goals|display_time }} -
+      공개여부: {% if group.password %}비공개{% else %}공개{% endif %}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+<!-- Pagination Controls -->
+<div>
+  <span>페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+  <div>
+    {% if page_obj.has_previous %}
+    <a href="?q={{ query }}&page=1">&laquo; 첫 페이지</a>
+    <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">이전</a>
+    {% endif %} {% if page_obj.has_next %}
+    <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">다음</a>
+    <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}"
+      >마지막 페이지 &raquo;</a
+    >
+    {% endif %}
+  </div>
+</div>
+{% else %}
+<p>검색된 그룹이 없습니다.</p>
+{% endif %} {% else %}
+<p>검색어를 입력해주세요.</p>
+{% endif %} {% endblock %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from relationship.models import Relationship
 
 class CustomUser(AbstractUser):
     following = models.ManyToManyField(
@@ -27,6 +28,4 @@ class ScreenTime(models.Model):
             screen_time.save()
 
     rank = models.PositiveIntegerField(default=0)  # 랭킹
-    
-
     

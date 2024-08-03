@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<h1>{{ group.title }}</h1>
+<a href="{% url 'my_group' %}" class="btn btn-primary">My Group</a>
+<a href="{% url 'group_setting' group.id %}" class="btn btn-secondary"
+  >Group Setting</a
+>
+
+<h2>Group Users</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>순위</th>
+      <th>유저명</th>
+      <th>시간</th>
+      <th>목표 시간 달성 여부</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for screen_time in page_obj %}
+    <tr>
+      {% load time_filters %}
+      <td>{{ forloop.counter }}</td>
+      <td>{{ screen_time.user.username }}</td>
+      <td>{{ screen_time.total_minutes|display_time}}</td>
+      <td>{% time_comparison group.goals screen_time.total_minutes %}</td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+{% endblock %}

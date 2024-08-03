@@ -1,8 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Received Messages{% endblock %}
+{% block title %}Received Messages List{% endblock %}
 {% block content %}
 
-    <p><a href="{% url 'sent_list' %}">보낸 메시지함</a></p>
+<p><a href="{% url 'sent_list' %}">Sent Messages</a></p>
+
+<h1>Received Messages</h1>
     
     {% for received_message in received_messages %}
         <p>{{ received_message.sender }}</p>
