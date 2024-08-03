@@ -4,17 +4,6 @@
 <html>
   <head> </head>
   <body>
-    <header class="screen-header">
-      <img id="logo" src="{% static 'images/maniax.png' %}" />
-      {% if user.is_authenticated %}
-      <div class="homeFilter">
-        <button class="filter-btn active" id="allBtn">Total</button>
-      </div>
-      {% else %}
-      <a href="{% url 'login' %}"><button>Login</button></a>
-      {% endif %}
-    </header>
-
     <div class="timerSection">
       {% if user.is_authenticated %} {% load time_filters %}
       <div class="timer" onclick="openOverlay()">
@@ -28,17 +17,29 @@
       <div class="overlay-content">
         <span class="close-btn" onclick="closeOverlay()">&times;</span>
         <form method="post" class="my_screen_time">
-          {% csrf_token %} {{ form.hours }}:{{ form.minutes }}
+          {% csrf_token %}
+          <div class="overlay-content-time">
+            <p class="overlay-content-input">{{ form.hours }}</p>
+            :
+            <p class="overlay-content-input">{{ form.minutes }}</p>
+          </div>
           <button type="submit">Update</button>
         </form>
       </div>
     </div>
-    <div class="follwertotal">
-      <a href="{% url 'following_rankings_view' %}">Following Rankings</a>
+    {% if user.is_authenticated %}
+    <div class="homeFilter">
+      <button class="filter-btn active" id="allBtn">전체</button>
+      <button class="filter-btn" id="followBtn">팔로우</button>
     </div>
-    {% if screen_times %}{% for screen_time in screen_times %}
+    {% else %}
+    <a href="{% url 'login' %}" class="filter-btn active"
+      ><button>Login</button></a
+    >
+    {% endif %} {% if screen_times %}
     <div id="content">
       <div id="allContent">
+        {% for screen_time in screen_times %}
         <div class="usageList">
           <a
             href="{% url 'user_profile' user_id=screen_time.user.id %}"
@@ -52,9 +53,29 @@
             </div>
           </a>
         </div>
+        {% endfor %}
+      </div>
+      <div id="followContent" style="display: none">
+        {% if user.is_authenticated %}
+        <!---->
+        {% for screen_time in following_screen_times %}
+        <div class="usageList">
+          <a
+            href="{% url 'user_profile' user_id=screen_time.user.id %}"
+            class="ranking-item"
+          >
+            <div class="rank-number">{{ screen_time.rank }}</div>
+            <div class="rank-name">{{ screen_time.user.username }}</div>
+            {% load time_filters %}
+            <div class="rank-time">
+              {{ screen_time.total_minutes|display_time }}
+            </div>
+          </a>
+        </div>
+        {% endfor %} {% else %}{% endif %}
       </div>
     </div>
-    {% endfor %} {% else %}
+    {% else %}
     <p>No users found.</p>
     {% endif %}
   </body>

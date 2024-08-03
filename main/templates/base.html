@@ -18,12 +18,15 @@
     ></script>
   </head>
   <body>
+    <header class="screen-header">
+      <img id="logo" src="{% static 'images/maniax.png' %}" />
+    </header>
     <nav class="navbar">
       <ul>
         <li><a href="{% url 'rankings' %}">Home</a></li>
-        <li><a href="{% url 'myinfo' %}">My Info</a></li>
         <li><a href="{% url 'my_group' %}">Group</a></li>
         <li><a href="{% url 'received_list' %}">Message</a></li>
+        <li><a href="{% url 'myinfo' %}">My Info</a></li>
       </ul>
     </nav>
     <div class="content">{% block content %} {% endblock %}</div>

@@ -26,12 +26,12 @@
 }
 
 .timerSection {
-  background-color: rgb(250, 250, 250);
+  background-color: #444;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1.2px solid rgb(180, 180, 180);
   padding: 10px 0px;
 }
 
@@ -40,7 +40,7 @@
   justify-content: center;
   align-items: center;
   font-size: 50px;
-  color: rgb(70, 70, 70);
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
 
@@ -57,17 +57,20 @@
 
 .filter-btn {
   background-color: transparent;
-  color: rgb(70, 70, 70);
-  border: 2px solid rgba(0, 0, 0, 0.2); /* Border added */
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(180, 180, 180); /* Border added */
   padding: 5px 20px;
   cursor: pointer;
   border-radius: 20px;
   font-weight: bold;
   font-size: 15px;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .filter-btn.active {
-  color: rgb(70, 70, 70);
+  color: rgb(180, 180, 180);
 }
 
 #content {
@@ -107,7 +110,7 @@
 }
 
 .rank-time {
-  padding: 10px 5px 10px 10px;
+  padding: 10px 15px 10px 10px;
   font-size: 16px;
 }
 
@@ -133,6 +136,15 @@
   color: #000;
   width: 80%;
   max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-content-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .close-btn {
@@ -144,13 +156,8 @@
   color: rgb(70, 70, 70);
 }
 
-.overlay-content input {
-  width: 80%;
-  padding: 10px;
-  margin: 20px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1em;
+.overlay-content-input {
+  width: 150px;
 }
 
 .overlay-content button {

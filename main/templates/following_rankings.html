@@ -11,7 +11,7 @@
         <th>User</th>
         <th>Screen Time</th>
       </tr>
-      {% load time_filters %} {% for screen_time in screen_times %}
+      {% load time_filters %} {% for screen_time in following_screen_times %}
       <tr>
         <td>{{ screen_time.rank }}</td>
         <td>{{ screen_time.user.username }}</td>

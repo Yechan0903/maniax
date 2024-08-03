@@ -1,12 +1,85 @@
 {% extends 'base.html' %} {% block title %}My Info{%endblock%} {%block content%}
-<h1>My Info</h1>
-<p>{{ user.username }}</p>
-<form method="post">
-  {% csrf_token %} {{ form.hours.label_tag }} {{ form.hours }}<br />
-  {{ form.minutes.label_tag }} {{ form.minutes }}<br />
-  <button type="submit">Update</button>
-</form>
-<a href="{%url 'following' user_id=request.user.id %}">Following</a>
-<a href="{%url 'followers' user_id=request.user.id %}">Followers</a>
-<a href="{% url 'logout' %}">Logout</a>
+{% load static %}
+
+<div class="app-container">
+  <div class="profile-container">
+    <div class="header">
+      <span class="time"></span>
+      <!--이건 시간-->
+      <div class="icons"><!--이건 와이파이, 배터리,상태--></div>
+    </div>
+    <div class="profile">
+      <i class="fa-solid fa-dragon profile-pic" onclick="goToAlertPage()"></i>
+      <div class="profile-info">
+        <span class="username">{{ user.username }}</span>
+        <span class="status">상태메시지가 없습니다</span>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <i class="fa-regular fa-user stat-icon"></i>
+        <span class="stat-value">135</span>
+      </div>
+      <div class="stat">
+        <i class="fa-regular fa-clock stat-icon"></i>
+        <span class="stat-value">6h 13m</span>
+      </div>
+    </div>
+    <div class="menu-icons">
+      <div class="menu-icon">
+        <div class="icon-background">
+          <i
+            class="fa-regular fa-bell menu-icon-img"
+            onclick="goToAlertPage()"
+          ></i>
+        </div>
+        <span class="menu-icon-label">알림</span>
+      </div>
+      <div class="menu-icon">
+        <div class="icon-background">
+          <i
+            class="fa-solid fa-bullhorn menu-icon-img"
+            onclick="goToNoticePage()"
+          ></i>
+        </div>
+        <span class="menu-icon-label">공지사항</span>
+      </div>
+      <div class="menu-icon">
+        <div class="icon-background">
+          <i
+            class="fa-regular fa-envelope menu-icon-img"
+            onclick="goToCustomerSupportPage()"
+          ></i>
+        </div>
+        <span class="menu-icon-label">고객지원</span>
+      </div>
+    </div>
+    <div class="menu-items">
+      <div class="menu-item" onclick="goToSettingsPage()">
+        <i class="fa-solid fa-gear menu-item-icon"></i>
+        <span class="menu-item-label">설정</span>
+      </div>
+      <div class="menu-item" onclick="goToCalendarPage()">
+        <i class="fa-regular fa-calendar-days menu-item-icon"></i>
+        <span class="menu-item-label">캘린더</span>
+      </div>
+      <div class="menu-item" onclick="goToAccountPage()">
+        <i class="fa-solid fa-circle-user menu-item-icon"></i>
+        <span class="menu-item-label">계정</span>
+      </div>
+      <div class="menu-item" onclick="goToHelpPage()">
+        <i class="fa-regular fa-question-circle menu-item-icon"></i>
+        <span class="menu-item-label">도움말</span>
+      </div>
+      <div class="menu-item" onclick="goToAppInfoPage()">
+        <i class="fa-solid fa-info menu-item-icon"></i>
+        <span class="menu-item-label">앱 정보</span>
+      </div>
+      <a href="{% url 'logout' %}" class="menu-item">
+        <i class="fa-solid fa-info menu-item-icon"></i>
+        <span class="menu-item-label">로그아웃</span>
+      </a>
+    </div>
+  </div>
+</div>
 {%endblock%}
