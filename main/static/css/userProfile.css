@@ -16,13 +16,14 @@
   left: 10px;
 }
 
-.userProfileHeader button {
+.userProfileHeader a {
   background: none;
   border: none;
   color: #a3ffa0;
   font-size: 24px;
   cursor: pointer;
   font-size: 50px;
+  text-decoration: none;
 }
 
 .profile {

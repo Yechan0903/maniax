@@ -1,21 +1,35 @@
-{% extends 'base.html' %} {% block content %}
-<h1>사용자 검색</h1>
-<a href="{% url 'rankings' %}" class="btn btn-secondary">Ranking</a>
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/userSearch.css' %}"
+/>
+<script>
+  function resetInput() {
+    document.getElementById("myInput").value = "";
+  }
+</script>
+{% endblock %}{% block content %}
 
-<form method="get">
-  <input
-    type="text"
-    name="q"
-    value="{{ query }}"
-    placeholder="사용자명으로 검색"
-  />
-  <button type="submit" class="btn btn-primary">검색</button>
-</form>
+<div class="userSearchHeader">
+  <a href="{% url 'rankings' %}">
+    <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+  ></a>
+  <form method="get">
+    <input
+      type="text"
+      name="q"
+      value="{{ query }}"
+      placeholder="사용자명으로 검색"
+      id="myInput"
+    />
+  </form>
+  <button type="button" onclick="resetInput()">취소</button>
+</div>
 
-{% if query %} {% if page_obj.object_list %}
-<ul>
+<div class="usersearchfine">
+  {% if query %} {% if page_obj.object_list %}
+  <!---->
   {% for user in page_obj.object_list %}
-  <div class="usageList">
+  <div class="userSearchContent">
     <a href="{% url 'user_profile' user_id=user.id %}" class="ranking-item">
       <div class="rank-name">{{ user.username }}</div>
       {% load time_filters %}
@@ -25,10 +39,10 @@
     </a>
   </div>
   {% endfor %}
-</ul>
+</div>
 
 <!-- Pagination Controls -->
-<div>
+<div class="pagination">
   <span>페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
   <div>
     {% if page_obj.has_previous %}
