@@ -4,31 +4,33 @@ body {
   color: #fff;
 }
 
-.groupContainer {
-  padding: 20px;
-}
-
 .groupHeader {
+  position: fixed;
+  top: 0px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 20px 0;
   border-bottom: 1px solid #333;
+  background-color: #333;
 }
 
 .groupTitle {
   flex-grow: 1;
   text-align: center;
-  margin-left: 70px;
+  margin-left: 94px;
 }
 
 .add-group {
   text-decoration: none;
   color: #fff;
+  padding-right: 20px;
 }
 
 .group-list {
-  margin-top: 20px;
+  padding: 20px;
+  margin-top: 41px;
 }
 
 .group-item {
@@ -71,16 +73,16 @@ body {
   padding: 0;
 }
 
-.groupDiv {
-  padding: 20px;
-}
-
 .groupDetailHeader {
+  position: fixed;
+  top: 0px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 15.5px 0;
   border-bottom: 1px solid #333;
+  background-color: #333;
 }
 
 .groupName {
@@ -92,16 +94,19 @@ body {
   text-decoration: none;
   color: #fff;
   font-size: 24px;
+  padding-left: 21px;
 }
 
 .settings-button {
   text-decoration: none;
   color: #fff;
   font-size: 24px;
+  padding-right: 20px;
 }
 
 .groupDetailranking {
-  margin-top: 20px;
+  padding: 20px;
+  margin-top: 45px;
 }
 
 .ranking-title {
@@ -165,10 +170,15 @@ body {
 }
 
 .groupAddHeader {
+  position: fixed;
+  top: 0px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 19.5px 0;
+  border-bottom: 1px solid #333;
+  background-color: #333;
 }
 
 .groupAdd-back-button,
@@ -178,6 +188,7 @@ body {
   color: #fff;
   font-size: 17px;
   text-decoration: none;
+  padding: 0px 20px;
 }
 
 .groupAddNotice {
@@ -185,10 +196,12 @@ body {
   color: #aaa;
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 63px;
 }
 
 .groupAdd-list {
   margin-bottom: 20px;
+  padding: 0px 20px;
 }
 
 .groupAdd-item {
@@ -232,4 +245,9 @@ body {
   justify-content: center;
   align-items: center;
   text-decoration: none;
+}
+
+.pagination {
+  padding-left: 30px;
+  margin-bottom: 150px;
 }

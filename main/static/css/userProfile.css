@@ -1,0 +1,65 @@
+.userProflie {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #a3ffa0;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  height: 100vh;
+}
+
+.userProfileHeader {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.userProfileHeader button {
+  background: none;
+  border: none;
+  color: #a3ffa0;
+  font-size: 24px;
+  cursor: pointer;
+  font-size: 50px;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.profile a {
+  margin: 0;
+  font-size: 24px;
+}
+
+.profile p {
+  margin: 20px 80px;
+  font-size: 18px;
+  color: white;
+}
+
+.userButtons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.userButtons button {
+  padding: 10px 20px;
+  background-color: #a3ffa0;
+  border: none;
+  border-radius: 5px;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  width: 150px;
+}

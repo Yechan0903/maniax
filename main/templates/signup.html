@@ -4,28 +4,17 @@
 />{% endblock %} {% block title %}Sign Up{%endblock%} {%block content%}
 
 <div class="registerContainer">
+  <h2>maniaX</h2>
+  <h1>
+    소셜 미디어 사용 시간 줄이기,<br />
+    친구들과 공유하며 함께 시작해보세요!
+  </h1>
   <form method="post" class="registerFormLayout">
-    {% csrf_token %}
-    <div class="registerBox">
-      <label for="{{ form.username.id_for_label }}">아이디</label>
-      {{ form.username }}
-      <small>{{ form.username.help_text }}</small>
-    </div>
-    <div class="registerBox">
-      <label for="{{ form.email.id_for_label }}">이메일</label>
-      {{ form.email }}
-    </div>
-    <div class="registerBox">
-      <label for="{{ form.password1.id_for_label }}">비밀번호</label>
-      {{ form.password1 }}
-      <small>{{ form.password1.help_text }}</small>
-    </div>
-    <div class="registerBox">
-      <label for="{{ form.password2.id_for_label }}">비밀번호 재확인</label>
-      {{ form.password2 }}
-      <small>{{ form.password2.help_text }}</small>
-    </div>
+    {% csrf_token %} {{ form.username }} {{ form.email }} {{ form.password1 }}
+    {{ form.password2 }}
+
     <button type="submit" class="registerBtn">가입하기</button>
+    <a href="{% url 'rankings' %}" class="registerCancelBtn">취소</a>
   </form>
 </div>
 {% if errors %}

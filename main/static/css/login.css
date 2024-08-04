@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   height: 100vh;
   background-color: #000000;
 }
@@ -10,6 +10,7 @@
 .loginContainer h2 {
   color: #c6ffc5;
   margin-bottom: 15px;
+  margin-top: 70px;
 }
 
 .loginContainer h1 {
@@ -30,7 +31,7 @@
 }
 
 input {
-  width: 300px;
+  width: 259px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -58,6 +59,8 @@ input {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
 }
 
 .loginBtn:hover {
@@ -69,7 +72,7 @@ input {
 }
 
 hr.divider {
-  width: 320px;
+  width: 280px;
   border: 0;
   height: 1px;
   background: white;
@@ -78,7 +81,7 @@ hr.divider {
 }
 
 .signupBtn {
-  width: 150px;
+  width: 260px;
   padding: 10px;
   background-color: #c6ffc5;
   color: black;
@@ -88,4 +91,5 @@ hr.divider {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
+  font-size: 13px;
 }

@@ -23,12 +23,8 @@
       <div class="overlay-content">
         <span class="close-btn" onclick="closeOverlay()">&times;</span>
         <form method="post" class="my_screen_time">
-          {% csrf_token %}
-          <div class="overlay-content-time">
-            <p class="overlay-content-input">{{ form.hours }}</p>
-            :
-            <p class="overlay-content-input">{{ form.minutes }}</p>
-          </div>
+          {% csrf_token %} {{ form.hours }} :{{ form.minutes }}
+
           <button type="submit">Update</button>
         </form>
       </div>
