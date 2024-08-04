@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/myinfo/alert.css' %}"
+/>{% endblock %}{%block content%}
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="left">
+        <a href="{% url 'myinfo' %}">
+          <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+        ></a>
+      </div>
+      <div class="center">
+        <span class="title">알림</span>
+      </div>
+    </div>
+    <div class="settings">
+      <div class="setting-item">
+        <span class="setting-label">쪽지 알림</span>
+        <input type="checkbox" class="setting-switch" checked />
+      </div>
+      <div class="setting-item">
+        <span class="setting-label">서비스 알림</span>
+        <input type="checkbox" class="setting-switch" />
+      </div>
+      <div class="setting-item">
+        <span class="setting-label">프로모션 알림</span>
+        <input type="checkbox" class="setting-switch" />
+      </div>
+      <div class="setting-item">
+        <span class="setting-label">일일 사용 시간 알림</span>
+        <input type="checkbox" class="setting-switch" />
+      </div>
+      <div class="setting-item">
+        <span class="setting-label">주간 사용 시간 알림</span>
+        <input type="checkbox" class="setting-switch" />
+      </div>
+      <div class="setting-item">
+        <span class="setting-label">그룹 인원 추가 알림</span>
+        <input type="checkbox" class="setting-switch" checked />
+      </div>
+      <div class="setting-item">
+        <span class="setting-label">그룹 정보 변경 알림</span>
+        <input type="checkbox" class="setting-switch" checked />
+      </div>
+      <div class="setting-item">
+        <span class="setting-label">그룹 해제 알림</span>
+        <input type="checkbox" class="setting-switch" />
+      </div>
+    </div>
+  </div>
+</body>
+{%endblock%}

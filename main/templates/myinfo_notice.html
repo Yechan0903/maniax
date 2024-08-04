@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/myinfo/notice.css' %}"
+/>{% endblock %}{%block content%}
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="left">
+        <a href="{% url 'myinfo' %}">
+          <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+        ></a>
+      </div>
+      <div class="center">
+        <span class="title">공지사항</span>
+      </div>
+    </div>
+    <div class="notices">
+      <div class="notice-item" onclick="toggleNotice(this)">
+        <div class="notice-header">
+          <div>
+            <div class="notice-date">24/07/29</div>
+            <div class="notice-title">maniaX 운영정책 개정 안내</div>
+          </div>
+          <i class="fa-solid fa-angle-down arrow"></i>
+        </div>
+        <div class="notice-content">운영정책 개정에 대한 내용...</div>
+      </div>
+      <div class="notice-item" onclick="toggleNotice(this)">
+        <div class="notice-header">
+          <div>
+            <div class="notice-date">24/07/28</div>
+            <div class="notice-title">maniaX 1.0.6 업데이트 안내</div>
+          </div>
+          <i class="fa-solid fa-angle-down arrow"></i>
+        </div>
+        <div class="notice-content">업데이트에 대한 내용...</div>
+      </div>
+      <div class="notice-item" onclick="toggleNotice(this)">
+        <div class="notice-header">
+          <div>
+            <div class="notice-date">24/07/25</div>
+            <div class="notice-title">maniaX 첨부파일 이용 정책 변경 안내</div>
+          </div>
+          <i class="fa-solid fa-angle-down arrow"></i>
+        </div>
+        <div class="notice-content">첨부파일 이용 정책 변경에 대한 내용...</div>
+      </div>
+      <div class="notice-item" onclick="toggleNotice(this)">
+        <div class="notice-header">
+          <div>
+            <div class="notice-date">24/07/19</div>
+            <div class="notice-title">불법 결제 행위 관련 안내</div>
+          </div>
+          <i class="fa-solid fa-angle-down arrow"></i>
+        </div>
+        <div class="notice-content">불법 결제 행위에 대한 내용...</div>
+      </div>
+      <div class="notice-item" onclick="toggleNotice(this)">
+        <div class="notice-header">
+          <div>
+            <div class="notice-date">24/07/13</div>
+            <div class="notice-title">maniaX 장애로 불편을 드려 죄송합니다</div>
+          </div>
+          <i class="fa-solid fa-angle-down arrow"></i>
+        </div>
+        <div class="notice-content">장애로 인한 불편 사항에 대한 내용...</div>
+      </div>
+      <div class="notice-item" onclick="toggleNotice(this)">
+        <div class="notice-header">
+          <div>
+            <div class="notice-date">24/07/06</div>
+            <div class="notice-title">maniaX 1.0.5 업데이트 안내</div>
+          </div>
+          <i class="fa-solid fa-angle-down arrow"></i>
+        </div>
+        <div class="notice-content">업데이트에 대한 내용...</div>
+      </div>
+    </div>
+  </div>
+</body>
+{%endblock%}{% block extra_js %}
+<script src="{% static 'js/notice.js' %}"></script>
+{% endblock %}

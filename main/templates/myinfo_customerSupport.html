@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/myinfo/customerSupport.css' %}"
+/>{% endblock %}{%block content%}
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="left">
+        <a href="{% url 'myinfo' %}">
+          <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+        ></a>
+      </div>
+      <div class="center">
+        <span class="title">고객지원</span>
+      </div>
+    </div>
+    <div class="CS">
+      <div class="content">
+        <div class="intro">
+          <h2>maniaX입니다. 무엇을 도와드릴까요?</h2>
+        </div>
+        <div class="search-box">
+          <input
+            type="text"
+            id="search"
+            placeholder="궁금하신 점을 검색해보세요"
+            onfocus="showKeyboard()"
+            oninput="hidePlaceholder()"
+          />
+          <i class="fa-solid fa-search"></i>
+        </div>
+        <div class="faq">
+          <h3>자주 묻는 질문</h3>
+          <div class="question">
+            <i class="fa-solid fa-question-circle"></i>
+            <span>암호를 분실했어요. 어떻게 하나요?</span>
+          </div>
+          <div class="question">
+            <i class="fa-solid fa-question-circle"></i>
+            <span>인증 문자가 오지 않아요. 어떻게 하나요?</span>
+          </div>
+          <div class="question">
+            <i class="fa-solid fa-question-circle"></i>
+            <span>그룹을 조용히 나가고 싶어요</span>
+          </div>
+          <div class="question">
+            <i class="fa-solid fa-question-circle"></i>
+            <span>결제했는데 결제 처리가 안 돼요. 어떻게 하나요?</span>
+          </div>
+        </div>
+        <div class="categories">
+          <h3>카테고리별로 찾아보세요</h3>
+          <div class="category-grid">
+            <div class="category">일반</div>
+            <div class="category">신고/정책</div>
+            <div class="category">프로필</div>
+            <div class="category">알림</div>
+            <div class="category">그룹 설정</div>
+            <div class="category">업데이트</div>
+            <div class="category">결제</div>
+            <div class="category">공유</div>
+            <div class="category">가입</div>
+            <div class="category">기본 설정</div>
+            <div class="category">탈퇴</div>
+            <div class="category">친구 관리</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function showKeyboard() {
+      const searchBox = document.getElementById("search");
+      searchBox.focus();
+    }
+
+    function hidePlaceholder() {
+      const searchBox = document.getElementById("search");
+      if (searchBox.value) {
+        searchBox.placeholder = "";
+      } else {
+        searchBox.placeholder = "궁금하신 점을 검색해보세요";
+      }
+    }
+  </script>
+</body>
+{%endblock%}

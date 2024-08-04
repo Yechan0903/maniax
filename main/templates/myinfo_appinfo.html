@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/myinfo/appinfo.css' %}"
+/>{% endblock %}{%block content%}
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="left">
+        <a href="{% url 'myinfo' %}">
+          <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+        ></a>
+      </div>
+      <div class="center">
+        <span class="title">앱정보</span>
+      </div>
+    </div>
+    <div class="app-info">
+      <div class="info-item">
+        <span class="label">버전</span>
+        <span class="value">1.0.6</span>
+      </div>
+      <div class="info-item">
+        <span class="label">개발자</span>
+        <span class="value">김준형, 박준형, 신예찬, 정승연, 최소영</span>
+      </div>
+      <div class="info-item">
+        <span class="label">앱 히스토리</span>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+      <div class="info-item">
+        <span class="label">앱 사용 규칙</span>
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+    </div>
+  </div>
+</body>
+{%endblock%}

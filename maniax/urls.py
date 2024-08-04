@@ -25,9 +25,19 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup_view, name='signup'),
+    path('search_user/', views.search_user, name='search_user'),
     path('login_or_signup/', views.login_or_signup_view, name='login_or_signup'),
     path('group/', include('group.urls')),
     path('message/', include('message.urls')),
     path('relationship/', include("relationship.urls")),
-    path('following_rankings/', views.following_rankings_view, name="following_rankings_view")
+    path('following_rankings/', views.following_rankings_view, name="following_rankings_view"),
+    
+    path('myinfo_account/', views.myinfo_account, name='myinfo_account'),
+    path('myinfo_alert/', views.myinfo_alert, name='myinfo_alert'),
+    path('myinfo_appinfo/', views.myinfo_appinfo, name='myinfo_appinfo'),
+    path('myinfo_calender/', views.myinfo_calender, name='myinfo_calender'),
+    path('myinfo_customerSupport/', views.myinfo_customerSupport, name='myinfo_customerSupport'),
+    path('myinfo_help/', views.myinfo_help, name='myinfo_help'),
+    path('myinfo_notice/', views.myinfo_notice, name='myinfo_notice'),
+    path('myinfo_setting/', views.myinfo_setting, name='myinfo_setting'),
 ]

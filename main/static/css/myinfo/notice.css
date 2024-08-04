@@ -1,0 +1,61 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #444;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.top-bar .time {
+  font-size: 18px;
+}
+
+.top-bar .icons {
+  display: flex;
+  gap: 5px;
+}
+
+.notices {
+  padding: 20px;
+  overflow-y: auto;
+  margin-top: 26px;
+}
+
+.notice-item {
+  border-bottom: 1px solid #555;
+}
+
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.notice-title {
+  font-size: 18px;
+}
+
+.notice-date {
+  font-size: 14px;
+  color: #888;
+}
+
+.notice-content {
+  display: none;
+  padding: 10px 15px;
+  color: #dbdbdb;
+  font-size: 12.8px; /* 80% of 16px */
+}
+
+.notice-item.open .notice-content {
+  display: block;
+}
+
+.notice-item.open .arrow {
+  transform: rotate(180deg);
+}

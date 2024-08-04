@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/myinfo/setting.css' %}"
+/>{% endblock %}{%block content%}
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="left">
+        <a href="{% url 'myinfo' %}">
+          <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+        ></a>
+      </div>
+      <div class="center">
+        <span class="title">설정</span>
+      </div>
+    </div>
+    <div class="search-box">
+      <input type="text" id="search" placeholder="검색" />
+      <i class="fa-solid fa-search"></i>
+    </div>
+    <div class="settings">
+      <div class="section">
+        <h3>기본 설정</h3>
+        <div class="item">기기권한 설정</div>
+        <div class="item">테마 설정</div>
+        <div class="item">보안 설정</div>
+      </div>
+      <div class="section">
+        <h3>언어</h3>
+        <div class="item">글자 크기 설정</div>
+        <div class="item">언어 선택</div>
+      </div>
+      <div class="section">
+        <h3>친구</h3>
+        <div class="item">숨김친구 관리</div>
+        <div class="item">차단친구 관리</div>
+      </div>
+      <div class="section">
+        <div class="item login">로그인</div>
+        <div class="item logout">로그아웃</div>
+        <div class="item withdraw">탈퇴하기</div>
+      </div>
+    </div>
+  </div>
+</body>
+{%endblock%}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/myinfo/help.css' %}"
+/>{% endblock %}{%block content%}
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="left">
+        <a href="{% url 'myinfo' %}">
+          <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+        ></a>
+      </div>
+      <div class="center">
+        <span class="title">도움말</span>
+      </div>
+    </div>
+    <div class="help-container">
+      <div class="help-item">홈화면 이용 설명서</div>
+      <div class="help-item">그룹 설명서</div>
+      <div class="help-item">계정 관리 설명서</div>
+      <div class="help-item">시간관리 설명서</div>
+      <div class="help-item">언어 변경</div>
+      <div class="help-item">오류 해결</div>
+    </div>
+  </div>
+</body>
+{%endblock%}

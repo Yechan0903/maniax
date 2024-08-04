@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/myinfo/account.css' %}"
+/>{% endblock %}{%block content%}
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="left">
+        <a href="{% url 'myinfo' %}">
+          <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+        ></a>
+      </div>
+      <div class="center">
+        <span class="title">계정</span>
+      </div>
+    </div>
+    <div class="profile-section">
+      <div class="profile-container">
+        <i class="fa-solid fa-dragon profile-pic"></i>
+        <div class="profile-info">
+          <span class="username">maniaX</span>
+          <span class="user-id">ID: iamlion</span>
+        </div>
+        <div class="profile-buttons">
+          <button class="profile-button">프로필 이미지 변경</button>
+          <button class="profile-button">닉네임 변경</button>
+        </div>
+      </div>
+    </div>
+    <div class="settings-container">
+      <div class="setting-item">
+        <span class="setting-title">회원정보 변경</span>
+        <span class="setting-description"
+          >이름, 생년월일, 휴대폰번호, 이메일</span
+        >
+      </div>
+      <div class="setting-item">
+        <span class="setting-title">비밀번호 변경</span>
+      </div>
+      <div class="setting-item">
+        <span class="setting-title">간편 로그인 설정</span>
+      </div>
+      <div class="setting-item">
+        <span class="setting-title">자동 로그인 기기 관리</span>
+      </div>
+    </div>
+  </div>
+</body>
+{%endblock%}

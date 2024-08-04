@@ -1,13 +1,10 @@
 {% extends 'base.html' %} {% block title %}My Info{%endblock%} {%block content%}
 {% load static %}
-
+<header class="screen-header">
+  <img id="logo" src="{% static 'images/maniax.png' %}" />
+</header>
 <div class="app-container">
   <div class="profile-container">
-    <div class="header">
-      <span class="time"></span>
-      <!--이건 시간-->
-      <div class="icons"><!--이건 와이파이, 배터리,상태--></div>
-    </div>
     <div class="profile">
       <i class="fa-solid fa-dragon profile-pic" onclick="goToAlertPage()"></i>
       <div class="profile-info">
@@ -27,15 +24,15 @@
     </div>
     <div class="menu-icons">
       <div class="menu-icon">
-        <div class="icon-background">
+        <a href="{% url 'myinfo_alert' %}" class="icon-background">
           <i
             class="fa-regular fa-bell menu-icon-img"
             onclick="goToAlertPage()"
           ></i>
-        </div>
+        </a>
         <span class="menu-icon-label">알림</span>
       </div>
-      <div class="menu-icon">
+      <a href="{% url 'myinfo_notice' %}" class="menu-icon">
         <div class="icon-background">
           <i
             class="fa-solid fa-bullhorn menu-icon-img"
@@ -43,8 +40,8 @@
           ></i>
         </div>
         <span class="menu-icon-label">공지사항</span>
-      </div>
-      <div class="menu-icon">
+      </a>
+      <a href="{% url 'myinfo_customerSupport' %}" class="menu-icon">
         <div class="icon-background">
           <i
             class="fa-regular fa-envelope menu-icon-img"
@@ -52,29 +49,49 @@
           ></i>
         </div>
         <span class="menu-icon-label">고객지원</span>
-      </div>
+      </a>
     </div>
     <div class="menu-items">
-      <div class="menu-item" onclick="goToSettingsPage()">
+      <a
+        href="{% url 'myinfo_setting' %}"
+        class="menu-item"
+        onclick="goToSettingsPage()"
+      >
         <i class="fa-solid fa-gear menu-item-icon"></i>
         <span class="menu-item-label">설정</span>
-      </div>
-      <div class="menu-item" onclick="goToCalendarPage()">
+      </a>
+      <a
+        href="{% url 'myinfo_calender' %}"
+        class="menu-item"
+        onclick="goToCalendarPage()"
+      >
         <i class="fa-regular fa-calendar-days menu-item-icon"></i>
         <span class="menu-item-label">캘린더</span>
-      </div>
-      <div class="menu-item" onclick="goToAccountPage()">
+      </a>
+      <a
+        href="{% url 'myinfo_account' %}"
+        class="menu-item"
+        onclick="goToAccountPage()"
+      >
         <i class="fa-solid fa-circle-user menu-item-icon"></i>
         <span class="menu-item-label">계정</span>
-      </div>
-      <div class="menu-item" onclick="goToHelpPage()">
+      </a>
+      <a
+        href="{% url 'myinfo_help' %}"
+        class="menu-item"
+        onclick="goToHelpPage()"
+      >
         <i class="fa-regular fa-question-circle menu-item-icon"></i>
         <span class="menu-item-label">도움말</span>
-      </div>
-      <div class="menu-item" onclick="goToAppInfoPage()">
+      </a>
+      <a
+        href="{% url 'myinfo_appinfo' %}"
+        class="menu-item"
+        onclick="goToAppInfoPage()"
+      >
         <i class="fa-solid fa-info menu-item-icon"></i>
         <span class="menu-item-label">앱 정보</span>
-      </div>
+      </a>
       <a href="{% url 'logout' %}" class="menu-item">
         <i class="fa-solid fa-info menu-item-icon"></i>
         <span class="menu-item-label">로그아웃</span>

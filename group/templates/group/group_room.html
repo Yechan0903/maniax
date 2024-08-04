@@ -1,41 +1,48 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/group.css' %}"
+/>{% endblock %}{% block content %}
 
 <div class="groupDetailContainer">
-  <div class="groupDetailHeader">
-    <a href="{% url 'my_group' %}" id="cancelButton" class="back-button">←</a>
-    <div class="groupName">{{ group.title }}</div>
-    <a href="{% url 'group_setting' group.id %}" class="settings-button">⚙️</a>
-  </div>
-  <div class="groupDetailranking">
-    <div class="ranking-title">랭킹 📊</div>
-    {% for screen_time in page_obj %} {% load time_filters %}
-    <a href="#" class="ranking-item">
-      <div class="rank-number">{{ forloop.counter }}</div>
-      <div class="rank-name">{{ screen_time.user.username }}</div>
-      <div class="rank-time">{{ screen_time.total_minutes|display_time}}</div>
-      <div class="rank-time">
-        {% time_comparison group.goals screen_time.total_minutes %}
-      </div>
-    </a>
-    {% endfor %}
+  <div class="groupDiv">
+    <div class="groupDetailHeader">
+      <a href="{% url 'my_group' %}" id="cancelButton" class="back-button">←</a>
+      <div class="groupName">{{ group.title }}</div>
+      <a href="{% url 'group_setting' group.id %}" class="settings-button"
+        >⚙️</a
+      >
+    </div>
+    <div class="groupDetailranking">
+      <div class="ranking-title">랭킹 📊</div>
+      {% for screen_time in page_obj %} {% load time_filters %}
+      <a href="#" class="ranking-item">
+        <div class="rank-number">{{ forloop.counter }}</div>
+        <div class="rank-name">{{ screen_time.user.username }}</div>
+        <div class="rank-time">{{ screen_time.total_minutes|display_time}}</div>
+        <div class="rank-time">
+          {% time_comparison group.goals screen_time.total_minutes %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
   </div>
 </div>
 
-<div class="pagination">
-  <span class="step-links">
-    {% if page_obj.has_previous %}
-    <a href="?page=1">&laquo; first</a>
-    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-    {% endif %}
-
-    <span class="current">
-      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-    </span>
-
-    {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">next</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-    {% endif %}
-  </span>
-</div>
 {% endblock %}

@@ -1,20 +1,48 @@
 .app-container {
   width: 100%;
-  background-color: #444; /* App background color */
+  background-color: #333; /* App background color */
   overflow: hidden; /* Ensure content doesn't overflow */
+  padding-bottom: 150px;
+  height: 100%;
 }
 
 .profile-container {
   width: 100%;
   height: 100%;
   background-color: #444;
+  margin-top: 43px;
 }
 
 .header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  background-color: #444;
+  align-items: center;
+  background-color: #333;
+}
+
+.header .left {
+  display: flex;
+  align-items: center;
+}
+
+.header .left i {
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+  padding-left: 10px;
+}
+
+.header .center {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 20px;
+  padding-right: 26px;
 }
 
 .profile {
@@ -102,6 +130,7 @@
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .icon-background {
@@ -113,6 +142,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .menu-icon-img {
@@ -123,6 +153,8 @@
 .menu-icon-label {
   font-size: 14px;
   margin-top: 5px;
+  text-decoration: none;
+  color: white;
 }
 
 .menu-items {
@@ -136,6 +168,7 @@
   padding: 10px 20px;
   border-bottom: 1px solid #555;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .menu-item:hover {

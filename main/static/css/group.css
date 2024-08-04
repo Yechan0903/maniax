@@ -67,8 +67,11 @@ body {
 
 .groupDetailContainer {
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+.groupDiv {
   padding: 20px;
 }
 
@@ -151,9 +154,9 @@ body {
 }
 
 .groupAddContainer {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 .groupAddTitle {
@@ -222,10 +225,11 @@ body {
   height: 50px;
   font-size: 24px;
   position: fixed;
-  bottom: 25px;
+  bottom: 75px;
   right: 25px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 }

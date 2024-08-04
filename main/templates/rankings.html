@@ -4,6 +4,12 @@
 <html>
   <head> </head>
   <body>
+    <header class="screen-header">
+      <img id="logo" src="{% static 'images/maniax.png' %}" />
+      <a href="{% url 'search_user' %}" class="groupAdd-search-button">
+        <i class="fas fa-search"></i>
+      </a>
+    </header>
     <div class="timerSection">
       {% if user.is_authenticated %} {% load time_filters %}
       <div class="timer" onclick="openOverlay()">
@@ -27,16 +33,16 @@
         </form>
       </div>
     </div>
-    {% if user.is_authenticated %}
+
     <div class="homeFilter">
+      {% if user.is_authenticated %}
       <button class="filter-btn active" id="allBtn">전체</button>
       <button class="filter-btn" id="followBtn">팔로우</button>
+      {% else %}
+      <a href="{% url 'login' %}" class="filter-btn">Login</a>
+      {% endif %}
     </div>
-    {% else %}
-    <a href="{% url 'login' %}" class="filter-btn active"
-      ><button>Login</button></a
-    >
-    {% endif %} {% if screen_times %}
+    {% if screen_times %}
     <div id="content">
       <div id="allContent">
         {% for screen_time in screen_times %}

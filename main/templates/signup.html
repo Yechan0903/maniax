@@ -1,20 +1,38 @@
-{% extends 'base.html' %} {% block title %}Sign Up{%endblock%} {%block content%}
-<!DOCTYPE html>
-<html>
-  <head> </head>
-  <body>
-    <h1>Sign Up</h1>
-    <form method="post">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Sign Up</button>
-    </form>
-    {% if errors %}
-    <ul>
-      {% for field, error in errors.items %}
-      <li>{{ field }}: {{ error }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </body>
-</html>
-{%endblock%}
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/register.css' %}"
+/>{% endblock %} {% block title %}Sign Up{%endblock%} {%block content%}
+
+<div class="registerContainer">
+  <form method="post" class="registerFormLayout">
+    {% csrf_token %}
+    <div class="registerBox">
+      <label for="{{ form.username.id_for_label }}">아이디</label>
+      {{ form.username }}
+      <small>{{ form.username.help_text }}</small>
+    </div>
+    <div class="registerBox">
+      <label for="{{ form.email.id_for_label }}">이메일</label>
+      {{ form.email }}
+    </div>
+    <div class="registerBox">
+      <label for="{{ form.password1.id_for_label }}">비밀번호</label>
+      {{ form.password1 }}
+      <small>{{ form.password1.help_text }}</small>
+    </div>
+    <div class="registerBox">
+      <label for="{{ form.password2.id_for_label }}">비밀번호 재확인</label>
+      {{ form.password2 }}
+      <small>{{ form.password2.help_text }}</small>
+    </div>
+    <button type="submit" class="registerBtn">가입하기</button>
+  </form>
+</div>
+{% if errors %}
+<ul>
+  {% for field, error in errors.items %}
+  <li>{{ field }}: {{ error }}</li>
+  {% endfor %}
+</ul>
+
+{% endif %} {%endblock%}

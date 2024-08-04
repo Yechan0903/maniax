@@ -1,54 +1,59 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/group.css' %}"
+/>{% endblock %} {% block content %}
 <div class="groupAddContainer">
-  <header class="groupAddHeader">
-    <a
-      href="{% url 'my_group' %}"
-      class="groupAdd-back-button"
-      id="cancelButton"
-      >←</a
-    >
-    <a class="groupAddTitle">그룹</a>
-    <a href="{% url 'search_group' %}" class="groupAdd-search-button">
-      <i class="fas fa-search"></i>
-    </a>
-  </header>
+  <div class="groupDiv">
+    <header class="groupAddHeader">
+      <a
+        href="{% url 'my_group' %}"
+        class="groupAdd-back-button"
+        id="cancelButton"
+        >←</a
+      >
+      <a class="groupAddTitle">그룹</a>
+      <a href="{% url 'search_group' %}" class="groupAdd-search-button">
+        <i class="fas fa-search"></i>
+      </a>
+    </header>
 
-  <p class="groupAddNotice">* 그룹이 생성된 날짜순으로 정렬됩니다.</p>
-  {% if page_obj.object_list %}
-  <div class="groupAdd-list">
-    {% for group in page_obj %}
-    <a href="{% url 'account_group' group.id %}" class="groupAdd-item">
-      <h2>{{ group.title }}</h2>
-      <p>{{ group.users.count }}명</p>
-      <p>{{ group.master.username }}</p>
-      {% load time_filters %}
-      <p>{{ group.goals|display_time}}</p>
-      <p class="private">
-        {% if group.is_private %}비공개 🔒{% else %}공개{% endif %}
-      </p>
-    </a>
-    {% endfor %}
+    <p class="groupAddNotice">* 그룹이 생성된 날짜순으로 정렬됩니다.</p>
+    {% if page_obj.object_list %}
+    <div class="groupAdd-list">
+      {% for group in page_obj %}
+      <a href="{% url 'account_group' group.id %}" class="groupAdd-item">
+        <h2>{{ group.title }}</h2>
+        <p>{{ group.users.count }}명</p>
+        <p>{{ group.master.username }}</p>
+        {% load time_filters %}
+        <p>{{ group.goals|display_time}}</p>
+        <p class="private">
+          {% if group.is_private %}비공개 🔒{% else %}공개{% endif %}
+        </p>
+      </a>
+      {% endfor %}
+    </div>
+    <a href="{% url 'create_group' %}" class="add-button">+</a>
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
   </div>
-  <a href="{% url 'create_group' %}" class="add-button">+</a>
 </div>
 
-<div class="pagination">
-  <span class="step-links">
-    {% if page_obj.has_previous %}
-    <a href="?page=1">&laquo; first</a>
-    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-    {% endif %}
-
-    <span class="current">
-      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-    </span>
-
-    {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}">next</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-    {% endif %}
-  </span>
-</div>
 {% else %}
 <p>생성된 그룹이 없습니다. 그룹을 만들어 주세요.</p>
 {% endif %} {% endblock %}

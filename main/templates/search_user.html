@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<h1>사용자 검색</h1>
+<a href="{% url 'rankings' %}" class="btn btn-secondary">Ranking</a>
+
+<form method="get">
+  <input
+    type="text"
+    name="q"
+    value="{{ query }}"
+    placeholder="사용자명으로 검색"
+  />
+  <button type="submit" class="btn btn-primary">검색</button>
+</form>
+
+{% if query %} {% if page_obj.object_list %}
+<ul>
+  {% for user in page_obj.object_list %}
+  <div class="usageList">
+    <a href="{% url 'user_profile' user_id=user.id %}" class="ranking-item">
+      <div class="rank-name">{{ user.username }}</div>
+      {% load time_filters %}
+      <div class="rank-time">
+        {{ user.screen_time.total_minutes|display_time }}
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</ul>
+
+<!-- Pagination Controls -->
+<div>
+  <span>페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+  <div>
+    {% if page_obj.has_previous %}
+    <a href="?q={{ query }}&page=1">&laquo; 첫 페이지</a>
+    <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">이전</a>
+    {% endif %} {% if page_obj.has_next %}
+    <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">다음</a>
+    <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}"
+      >마지막 페이지 &raquo;</a
+    >
+    {% endif %}
+  </div>
+</div>
+{% else %}
+<p>검색된 사용자가 없습니다.</p>
+{% endif %} {% else %}
+<p>검색어를 입력해주세요.</p>
+{% endif %} {% endblock %}

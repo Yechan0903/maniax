@@ -5,6 +5,7 @@ from .models import *
 from .forms import ScreenTimeForm, CustomUserCreationForm
 from django.contrib.auth.models import User
 from relationship.models import Relationship
+from django.core.paginator import Paginator
 
 def rankings_view(request):
     screen_times = ScreenTime.objects.order_by('-total_minutes')
@@ -93,3 +94,61 @@ def following_rankings_view(request):
         'following_screen_times':following_screen_times,
     }
     return render(request, 'following_rankings.html', context)
+
+def search_user(request):
+    query = request.GET.get('q', '')
+    users = CustomUser.objects.all().order_by('-date_joined')  # 최신 생성순으로 정렬
+
+    if query:
+        users = users.filter(username__startswith=query)
+
+    # Pagination
+    paginator = Paginator(users, 10)  # 한 페이지에 10개 그룹 표시
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'query': query,
+        'page_obj': page_obj,
+    }
+    return render(request, 'search_user.html', context)
+
+@login_required
+def myinfo_account(request):
+    # 나중에 추가합니다.
+    return render(request, 'myinfo_account.html')
+
+@login_required
+def myinfo_alert(request):
+    # 나중에 추가합니다.
+    return render(request, 'myinfo_alert.html')
+
+@login_required
+def myinfo_appinfo(request):
+    # 나중에 추가합니다.
+    return render(request, 'myinfo_appinfo.html')
+
+@login_required
+def myinfo_calender(request):
+    # 나중에 추가합니다.
+    return render(request, 'myinfo_calender.html')
+
+@login_required
+def myinfo_customerSupport(request):
+    # 나중에 추가합니다.
+    return render(request, 'myinfo_customerSupport.html')
+
+@login_required
+def myinfo_help(request):
+    # 나중에 추가합니다.
+    return render(request, 'myinfo_help.html')
+
+@login_required
+def myinfo_notice(request):
+    # 나중에 추가합니다.
+    return render(request, 'myinfo_notice.html')
+
+@login_required
+def myinfo_setting(request):
+    # 나중에 추가합니다.
+    return render(request, 'myinfo_setting.html')

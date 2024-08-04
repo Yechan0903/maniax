@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/myinfo/calender.css' %}"
+/>{% endblock %}{%block content%}
+
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="left">
+        <a href="{% url 'myinfo' %}">
+          <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+        ></a>
+      </div>
+      <div class="center">
+        <span class="title">캘린더</span>
+      </div>
+    </div>
+    <div class="calendar-container">
+      <div class="month">8월</div>
+      <div class="weekdays">
+        <div class="weekday" style="color: #d45151">일</div>
+        <div class="weekday">월</div>
+        <div class="weekday">화</div>
+        <div class="weekday">수</div>
+        <div class="weekday">목</div>
+        <div class="weekday">금</div>
+        <div class="weekday" style="color: #575eff">토</div>
+      </div>
+      <div class="days">
+        <!-- Dates will be populated by JavaScript -->
+      </div>
+      <div class="usage-details">
+        <div class="usage-date">8월 3일의 사용 시간</div>
+        <div class="usage-time">5h 52m</div>
+        <ul class="usage-list">
+          <li>유튜브 2h 3m</li>
+          <li>인스타그램 1h 37m</li>
+          <li>사파리 1h 2m</li>
+          <li>카카오톡 52m</li>
+          <li>에브리타임 18m</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+{%endblock%} {% block extra_js %}
+<script src="{% static 'js/calender.js' %}"></script>
+{% endblock %}
