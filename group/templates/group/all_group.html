@@ -33,7 +33,7 @@
       </a>
       {% endfor %}
     </div>
-    <a href="{% url 'create_group' %}" class="add-button">+</a>
+    <button class="add-button" onclick="openAddOverlay()">+</button>
     <div class="pagination">
       <span class="step-links">
         {% if page_obj.has_previous %}
@@ -56,4 +56,37 @@
 
 {% else %}
 <p>생성된 그룹이 없습니다. 그룹을 만들어 주세요.</p>
-{% endif %} {% endblock %}
+{% endif %}
+
+<div class="create_group_overlay" id="addOverlay">
+  <div class="create_group_overlay_content">
+    <button class="add-close-button" onclick="closeAddOverlay()">
+      &times;
+    </button>
+    <h2>그룹 만들기</h2>
+    <form method="post" class="groupMakeFormLayout">
+      {% csrf_token %}
+      <div class="groupMakeBox">
+        <label for="{{ form.title.id_for_label }}">그룹명</label>
+        {{ form.title }}
+      </div>
+      <div class="groupMakeBox">
+        <label for="{{ form.informarion.id_for_label }}">그룹소개</label>
+        {{ form.information }}
+      </div>
+      <div class="groupMakeBox">
+        <label for="{{ form.password.id_for_label }}">비밀번호</label>
+        {{ form.password }}
+      </div>
+      <div class="groupMakeBox">
+        <label for="{{ form.goals.id_for_label }}">목표시간</label>
+        {{ form.goals_hours }} : {{form.goals_minutes}}
+      </div>
+      <div class="groupmake-action-buttons">
+        <button type="submit" class="create-group-button">그룹 생성</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

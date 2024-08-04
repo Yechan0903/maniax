@@ -1,28 +1,37 @@
-{% extends 'base.html' %} {% block content %}
-<h1>방장 넘기기 - {{ group.title }}</h1>
-<a href="{% url 'group_setting' group_id=group.id %}" class="btn btn-secondary"
-  >Group Setting</a
->
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/group/change_group_master.css' %}"
+/>{% endblock %}{% block content %}
 
-<form method="post">
-  {% csrf_token %}
-  <h2>새 방장 선택</h2>
-  <div>
-    {% for user in users %}
-    <div>
-      <input
-        type="radio"
-        id="user{{ user.id }}"
-        name="new_master"
-        value="{{ user.id }}"
-      />
-      <label for="user{{ user.id }}">{{ user.username }}</label>
-    </div>
-    {% empty %}
-    <p>방장으로 변경할 유저가 없습니다.</p>
-    {% endfor %}
+<div class="header">
+  <div class="left">
+    <a href="{% url 'group_setting' group_id=group.id %}">
+      <i class="fa-solid fa-angle-left"></i
+    ></a>
   </div>
-  <button type="submit" class="btn btn-primary">Change Completed</button>
-</form>
-
+  <div class="center">
+    <span class="title">그룹장 변경하기</span>
+  </div>
+</div>
+<div class="changeGroupMaster">
+  <form method="post" class="groupMakeFormLayout">
+    {% csrf_token %}
+    <div>
+      {% for user in users %}
+      <div class="userListContainer">
+        <input
+          type="radio"
+          id="user{{ user.id }}"
+          name="new_master"
+          value="{{ user.id }}"
+        />
+        <label for="user{{ user.id }}">{{ user.username }}</label>
+      </div>
+      {% empty %}
+      <p>방장으로 변경할 유저가 없습니다.</p>
+      {% endfor %}
+    </div>
+    <button type="submit" class="create-group-button">변경하기</button>
+  </form>
+</div>
 {% endblock %}

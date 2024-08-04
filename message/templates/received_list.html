@@ -1,8 +1,29 @@
-{% extends "base.html" %} {% block title %}Received Messages List{% endblock %}
+{% extends "base.html" %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/message.css' %}"
+/>{% endblock %}{% block title %}Received Messages List{% endblock %}
+<!---->
 {%block content %}
-<p><a href="{% url 'sent_list' %}">Sent Messages</a></p>
-{% for received_message in received_messages %}
-<p>{{ received_message.sender }}</p>
-<p>{{ received_message.content }}</p>
-<p>{{ received_message.timestamp }}</p>
-{% endfor %} {% endblock %}
+
+<div class="header">
+  <div class="active_message">
+    <p>받은 메세지</p>
+  </div>
+  <a href="{% url 'sent_list' %}" class="noactive_message">보낸 메세지</a>
+</div>
+<div class="messageListt">
+  {% for received_message in received_messages %}
+  <div class="messageboxx">
+    <a
+      href="{% url 'user_profile' user_id=received_message.sender.id %}"
+      class="message-content"
+    >
+      <div class="message-text">{{ received_message.content }}</div>
+      <div class="message-meta">
+        {{ received_message.timestamp }} {{ received_message.sender }}
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

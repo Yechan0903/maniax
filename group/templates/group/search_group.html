@@ -1,33 +1,47 @@
-{% extends 'base.html' %} {% block content %}
-<h1>그룹 검색</h1>
-<a href="{% url 'all_group' %}" class="btn btn-secondary">All Group</a>
+{% extends 'base.html' %}{% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/group/search_group.css' %}"
+/><link rel="stylesheet" href="{% static 'css/userSearch.css' %}" />
+<!---->
+<script>
+  function resetInput() {
+    document.getElementById("myInputt").value = "";
+  }
+</script>
+{% endblock %} {% block content %}
 
-<form method="get">
-  <input
-    type="text"
-    name="q"
-    value="{{ query }}"
-    placeholder="그룹명으로 검색"
-  />
-  <button type="submit" class="btn btn-primary">검색</button>
-</form>
+<div class="userSearchHeader">
+  <a href="{% url 'all_group' %}"> <i class="fa-solid fa-angle-left"></i></a>
+  <form method="get">
+    <input
+      type="text"
+      name="q"
+      value="{{ query }}"
+      placeholder="그룹명으로 검색"
+      id="myInputt"
+    />
+  </form>
+  <button type="button" onclick="resetInput()">취소</button>
+</div>
 
 {% if query %} {% if page_obj.object_list %}
-<ul>
-  {% for group in page_obj.object_list %}
-  <li>
+<div class="groupAdd-list groupSearchList">
+  <!---->{% for group in page_obj.object_list %}
+  <a href="{% url 'account_group' group.id %}" class="groupAdd-item">
+    <h2>{{ group.title }}</h2>
+    <p>{{ group.users.count }}명</p>
+    <p>{{ group.master.username }}</p>
     {% load time_filters %}
-    <a href="{% url 'account_group' group.id %}">
-      {{ group.title }} - {{ group.users.count }}명 - 방장:
-      {{group.master.username }} - 목표 시간: {{ group.goals|display_time }} -
-      공개여부: {% if group.password %}비공개{% else %}공개{% endif %}
-    </a>
-  </li>
+    <p>{{ group.goals|display_time}}</p>
+    <p class="private">
+      {% if group.is_private %}비공개 🔒{% else %}공개{% endif %}
+    </p>
+  </a>
   {% endfor %}
-</ul>
+</div>
 
 <!-- Pagination Controls -->
-<div>
+<div class="pagination">
   <span>페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
   <div>
     {% if page_obj.has_previous %}

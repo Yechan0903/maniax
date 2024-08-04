@@ -144,12 +144,6 @@
   align-items: center;
 }
 
-.overlay-content-time {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .close-btn {
   position: absolute;
   top: 10px;
@@ -159,15 +153,11 @@
   color: rgb(70, 70, 70);
 }
 
-.overlay-content-input {
-  width: 150px;
-}
-
 .overlay-content button {
   padding: 10px 20px;
   border: none;
   background-color: #c6ffc5;
-  width: 70%;
+  width: 100%;
   max-width: 245px;
   color: #000000;
   font-weight: bold;
@@ -184,6 +174,60 @@
 
 .my_screen_time {
   margin: 0px;
-  width: 70%;
+  width: 100%;
   max-width: 245px;
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen-time-input-left {
+  text-align: center;
+  font-size: 30px;
+  width: 40px; /* 너비를 100%로 설정 */
+  height: 40px;
+  padding: 0px; /* 패딩 추가 */
+  border: 0px solid #ccc; /* 테두리 설정 */
+  border-radius: 4px; /* 둥근 모서리 설정 */
+  box-sizing: border-box;
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #000000;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.screen-time-input-right {
+  text-align: center;
+  font-size: 30px;
+  width: 40px; /* 너비를 100%로 설정 */
+  height: 40px;
+  padding: 0px; /* 패딩 추가 */
+  border: 0px solid #ccc; /* 테두리 설정 */
+  border-radius: 4px; /* 둥근 모서리 설정 */
+  box-sizing: border-box;
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #000000;
+  width: 100%;
+  margin-left: 10px;
+}
+
+.please {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 10px 0;
 }

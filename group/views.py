@@ -28,7 +28,19 @@ def all_group(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
-    return render(request, 'group/all_group.html', {'page_obj': page_obj})
+    user = request.user
+    if request.method == 'POST':
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            group = form.save(commit=False)
+            group.master = user
+            group.save()
+            group.users.add(user)
+            return redirect('group_room', group_id=group.id)
+    else:
+        form = GroupForm()
+    
+    return render(request, 'group/all_group.html', {'page_obj': page_obj, 'form': form})
 
 @login_required
 def group_room(request, group_id):

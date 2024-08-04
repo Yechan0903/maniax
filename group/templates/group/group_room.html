@@ -15,7 +15,10 @@
     <div class="groupDetailranking">
       <div class="ranking-title">랭킹 📊</div>
       {% for screen_time in page_obj %} {% load time_filters %}
-      <a href="#" class="ranking-item">
+      <a
+        href="{% url 'user_profile' user_id=screen_time.user.id %}"
+        class="ranking-item"
+      >
         <div class="rank-number">{{ forloop.counter }}</div>
         <div class="rank-name">{{ screen_time.user.username }}</div>
         <div class="rank-time">{{ screen_time.total_minutes|display_time}}</div>

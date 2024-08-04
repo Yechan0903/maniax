@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}{% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/group/create_group.css' %}"
+/>{% endblock %} {% block content %}
 <h1>그룹 만들기</h1>
 <a href="{% url 'all_group' %}" class="btn btn-primary">All Group</a>
 

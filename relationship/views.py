@@ -22,7 +22,6 @@ def follow(request, user_id):
     next_url = request.META.get('HTTP_REFERER', reverse('user_profile', args=[user.id]))
     return HttpResponseRedirect(next_url)
 
-@login_required
 def user_profile(request, user_id):
     #보려는 프로필의 사용자
     target_user = get_object_or_404(CustomUser, id=user_id)

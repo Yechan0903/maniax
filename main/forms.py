@@ -6,11 +6,11 @@ from .models import ScreenTime, CustomUser
 class ScreenTimeForm(forms.ModelForm):
     hours = forms.IntegerField(min_value=0, required=True, label='Hours',
         widget=forms.NumberInput(attrs={
-            'class': 'screen-time-input',  # 여기에 원하는 CSS 클래스를 지정
+            'class': 'screen-time-input-left',  # 여기에 원하는 CSS 클래스를 지정
         }))
     minutes = forms.IntegerField(min_value=0, max_value=59, required=True, label='Minutes',
         widget=forms.NumberInput(attrs={
-            'class': 'screen-time-input',  # 여기에 원하는 CSS 클래스를 지정
+            'class': 'screen-time-input-right',  # 여기에 원하는 CSS 클래스를 지정
         }))
 
     class Meta:

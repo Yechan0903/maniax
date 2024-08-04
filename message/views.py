@@ -8,7 +8,8 @@ from main.models import CustomUser
 #메세지 작성 화면 보여주기
 @login_required
 def write_message(request, user_id):
-    return render(request, 'write_message.html', {'user_id':user_id})
+    receiver = get_object_or_404(CustomUser, id=user_id)
+    return render(request, 'write_message.html', {'user_id':user_id,'receiver':receiver})
 
 #메세지 전송하기
 @login_required

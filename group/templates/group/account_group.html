@@ -1,29 +1,49 @@
-{% extends 'base.html' %} {% block content %}
-<h1>그룹 가입하기 - {{ group.title }}</h1>
-<button onclick="window.history.back()">Go Back</button>
+{% extends 'base.html' %}{% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/group/account_group.css' %}"
+/>{% endblock %} {% block content %}
 
-<div>
-  <h2>그룹 정보</h2>
-  <p>그룹명: {{ group.title }}</p>
-  <p>인원수: {{ group.users.count }}</p>
-  <p>방장: {{ group.master.username }}</p>
-  <p>그룹 목표 시간: {{ group.goals }}</p>
-  <p>공개 여부: {{ group.password|yesno:"비공개,공개" }}</p>
-  <p>그룹 소개: {{ group.information }}</p>
+<div class="account_group_over">
+  <div class="account_group_overContent">
+    <button class="close-button" onclick="window.history.back()">
+      &times;
+    </button>
+
+    <h2>{{ group.title }}</h2>
+
+    <div class="group-detailss">
+      <p>인원수 : {{ group.users.count }}</p>
+      <p>그룹장 : {{ group.master.username }}</p>
+      {% load time_filters %}
+      <p>그룹 목표 시간 : {{ group.goals|display_time }}</p>
+      <p>공개 여부 : {{ group.password|yesno:"비공개,공개" }}</p>
+    </div>
+    <div class="group-rules">
+      <p class="groupRule">그룹 소개/규칙</p>
+      <p>{{ group.information }}</p>
+    </div>
+
+    {% if not is_member %}
+    <form method="post">
+      {% csrf_token %} {% if group.password %}
+      <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+        />
+      </div>
+      {% endif %} {% if error_message %}
+      <div class="alert alert-danger">{{ error_message }}</div>
+      {% endif %}
+      <button type="submit" class="btn btn-primary">그룹가입</button>
+    </form>
+    {% else %}
+    <button class="btn btn-success" disabled>가입완료</button>
+    {% endif %}
+  </div>
 </div>
 
-{% if not is_member %}
-<form method="post">
-  {% csrf_token %} {% if group.password %}
-  <div class="form-group">
-    <label for="password">비밀번호</label>
-    <input type="password" class="form-control" id="password" name="password" />
-  </div>
-  {% endif %} {% if error_message %}
-  <div class="alert alert-danger">{{ error_message }}</div>
-  {% endif %}
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-{% else %}
-<button class="btn btn-success" disabled>가입 완료</button>
-{% endif %} {% endblock %}
+{% endblock %}

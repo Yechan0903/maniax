@@ -1,29 +1,65 @@
-{% extends 'base.html' %} {% block content %}
-<h1>그룹 설정 - {{ group.title }}</h1>
-<a href="{% url 'group_room' group.id %}" class="btn btn-primary">Group Room</a>
+{% extends 'base.html' %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/group/group_setting.css' %}"
+/>{% endblock %}{% block content %}
+
+<div class="header">
+  <div class="left">
+    <a href="{% url 'group_room' group.id %}">
+      <i class="fa-solid fa-angle-left"></i
+    ></a>
+  </div>
+  <div class="center">
+    <span class="title">그룹 설정</span>
+  </div>
+</div>
 
 {% if is_master %}
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit" class="btn btn-success">Update</button>
+<form method="post" class="groupMakeFormLayout groupUpdateForm">
+  {% csrf_token %}
+  <div class="groupMakeBox">
+    <label for="{{ form.title.id_for_label }}">그룹명</label>
+    {{ form.title }}
+  </div>
+  <div class="groupMakeBox">
+    <label for="{{ form.informarion.id_for_label }}">그룹소개</label>
+    {{ form.information }}
+  </div>
+  <div class="groupMakeBox">
+    <label for="{{ form.password.id_for_label }}">비밀번호</label>
+    {{ form.password }}
+  </div>
+  <div class="groupMakeBox">
+    <label for="{{ form.goals.id_for_label }}">목표시간</label>
+    {{ form.goals_hours }} : {{form.goals_minutes}}
+  </div>
+  <div class="groupmake-action-buttons">
+    <button type="submit" class="create-group-button">업데이트</button>
+  </div>
 </form>
-<a href="{% url 'kick_out_user' group.id %}" class="btn btn-warning"
-  >Kick Out User</a
->
-<a href="{% url 'change_group_master' group.id %}" class="btn btn-info"
-  >Change Group Master</a
->
+
+<div class="groupMakeFormLayout setting_group_o">
+  <a href="{% url 'kick_out_user' group.id %}" class="setting-menu-item"
+    ><span>그룹 멤버 강퇴</span> <span class="arrow">&rarr;</span></a
+  >
+  <a href="{% url 'change_group_master' group.id %}" class="setting-menu-item"
+    ><span>그룹장 변경</span> <span class="arrow">&rarr;</span></a
+  >
+</div>
+
 <form
   method="post"
   action="{% url 'remove_group' group.id %}"
-  style="display: inline"
+  class="groupMakeFormLayout remove_group_button"
 >
   {% csrf_token %}
-  <button type="submit" class="btn btn-danger">Remove Group</button>
+  <div class="groupmake-action-buttons">
+    <button type="submit" class="create-group-button">Remove Group</button>
+  </div>
 </form>
 {% else %}
-<form method="post">
+<form method="post" class="groupMakeFormLayout groupUpdateForm">
   {% csrf_token %}
-  <button type="submit" class="btn btn-danger">Resign Group</button>
+  <button type="submit" class="create-group-button">Resign Group</button>
 </form>
 {% endif %} {% endblock %}

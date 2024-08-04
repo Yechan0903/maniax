@@ -1,10 +1,53 @@
-{% extends "base.html" %} {% block title %}Write Message{% endblock %}
+{% extends "base.html" %} {% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/message_send.css' %}"
+/>{% endblock %} {% block title %}Write Message{% endblock %}
 <!--장고 오류 방지-->
 {% block content %}
 
-<form action="{%url 'send_message' user_id %}" method="post">
-  {% csrf_token %}
-  <textarea name="content" placeholder="메세지를 작성하세요"></textarea>
-  <button type="submit">전송</button>
-</form>
+<body>
+  <div class="header">
+    <button class="back-btn left" onclick="window.history.back()">
+      <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i>
+    </button>
+    <h1 class="title-centerr">{{receiver.username}}에게 메시지</h1>
+    <span class="send-btn" onclick="sendMessage()"></span>
+  </div>
+  <div class="containerr">
+    <form action="{%url 'send_message' user_id %}" method="post">
+      {% csrf_token %}
+      <textarea
+        id="myTextarea"
+        class="message-input"
+        name="content"
+        placeholder="메세지를 작성하세요"
+      ></textarea>
+      <button id="submitButton" type="submit" class="send-btnn">전송</button>
+    </form>
+  </div>
+
+  <script>
+    const textarea = document.getElementById("myTextarea");
+    const submitButton = document.getElementById("submitButton");
+
+    textarea.addEventListener("input", function () {
+      if (textarea.value.trim() === "") {
+        submitButton.disabled = true;
+        submitButton.classList.add("disabled");
+      } else {
+        submitButton.disabled = false;
+        submitButton.classList.remove("disabled");
+      }
+    });
+
+    // 초기 로딩 시에도 비어있는지 확인
+    document.addEventListener("DOMContentLoaded", function () {
+      if (textarea.value.trim() === "") {
+        submitButton.disabled = true;
+        submitButton.classList.add("disabled");
+      }
+    });
+  </script>
+</body>
+
 {% endblock %}

@@ -1,0 +1,29 @@
+.groupUpdateForm {
+  margin-top: 50px;
+  padding: 0px 20px;
+  margin-bottom: 40px;
+}
+
+.remove_group_button {
+  padding: 0px 20px;
+  margin-bottom: 150px;
+}
+
+.setting_group_o {
+  flex-grow: 1;
+  margin: 0px 20px;
+}
+
+.setting-menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #444;
+  padding: 12px 15px; /* Reduced padding */
+  border-radius: 5px;
+  margin-bottom: 20px; /* Reduced margin */
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  font-size: 14px; /* Smaller font size */
+}
