@@ -1,0 +1,17 @@
+.kickOutBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-weight: bold;
+  padding: 10px;
+}
+.kickOutBox button {
+  font-size: 15px;
+  background-color: #444;
+  border-radius: 15px;
+  height: 30px;
+  color: white;
+  border-style: solid;
+  width: 90px;
+}

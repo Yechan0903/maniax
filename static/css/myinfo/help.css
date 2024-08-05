@@ -1,0 +1,45 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333; /* Changed to black */
+}
+
+.top-bar .time {
+  font-size: 18px;
+}
+
+.top-bar .icons {
+  display: flex;
+  gap: 5px;
+}
+
+.help-container {
+  background-color: #444;
+  padding: 20px;
+  border-radius: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin: 10px 20px 0 20px;
+  box-sizing: border-box;
+  margin-top: 56px;
+}
+
+.help-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #555;
+  cursor: pointer;
+}
+
+.help-item:last-child {
+  border-bottom: none;
+}
+
+.help-item::after {
+  content: "\f105";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  float: right;
+  color: white;
+}

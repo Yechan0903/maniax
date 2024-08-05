@@ -1,0 +1,74 @@
+.account_group_over {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account_group_overContent {
+  margin: 0px 20px;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  width: 90%;
+  max-width: 350px;
+  border: 1px solid #555;
+  position: relative;
+}
+
+.account_group_overContent h2 {
+  margin-top: 0;
+}
+
+.close-button,
+.add-close-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.group-detailss {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.account_group_overContent .group-detailss p {
+  margin: 5px 0;
+}
+
+.account_group_overContent .group-rules {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.account_group_overContent .group-rules .groupRule {
+  color: #b2f5b2;
+}
+
+.btn {
+  background-color: #b2f5b2;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}

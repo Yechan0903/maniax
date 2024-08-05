@@ -1,0 +1,47 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333; /* 검은색 배경 */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.top-bar .time {
+  font-size: 18px;
+}
+
+.top-bar .icons {
+  display: flex;
+  gap: 5px;
+}
+
+.app-info {
+  padding: 20px;
+  margin-top: 26px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0; /* 위아래 간격을 1.5배로 조정 */
+  border-bottom: 1px solid #555;
+}
+
+.info-item .label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.info-item .value {
+  font-size: 16px;
+  color: #aaa;
+}
+
+.info-item i {
+  font-size: 16px;
+  color: #aaa;
+}

@@ -1,0 +1,23 @@
+.changeGroupMaster {
+  margin-top: 30px;
+  padding: 20px;
+  margin-bottom: 130px;
+}
+
+label {
+  width: 70px;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #fff;
+  text-align: right;
+}
+.userListContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.userListContainer input[type="radio"] {
+  margin-right: 10px;
+}

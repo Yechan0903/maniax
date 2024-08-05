@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.userSearchHeader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+}
+
+.userSearchHeader input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  flex-grow: 1;
+  margin: 0 10px;
+}
+
+.userSearchHeader form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.userSearchHeader a {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+.userSearchHeader button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  padding-right: 10px;
+}
+
+.userSearchContent {
+  flex: 1;
+  padding: 0px 20px;
+  background-color: #333;
+}
+
+.userSearchContent a {
+  text-decoration: none;
+  color: white;
+}
+
+p {
+  margin-top: 60px;
+  margin-left: 30px;
+}
+
+.usersearchfine {
+  margin-top: 53px;
+  margin-bottom: 20px;
+}
