@@ -16,7 +16,7 @@
         <i class="fas fa-search"></i>
       </a>
     </header>
-
+    <button class="add-button" onclick="openAddOverlay()">+</button>
     <p class="groupAddNotice">* 그룹이 생성된 날짜순으로 정렬됩니다.</p>
     {% if page_obj.object_list %}
     <div class="groupAdd-list">
@@ -33,7 +33,6 @@
       </a>
       {% endfor %}
     </div>
-    <button class="add-button" onclick="openAddOverlay()">+</button>
     <div class="pagination">
       <span class="step-links">
         {% if page_obj.has_previous %}
@@ -55,7 +54,7 @@
 </div>
 
 {% else %}
-<p>생성된 그룹이 없습니다. 그룹을 만들어 주세요.</p>
+<p class="wlsakr">생성된 그룹이 없습니다. 그룹을 만들어 주세요.</p>
 {% endif %}
 
 <div class="create_group_overlay" id="addOverlay">

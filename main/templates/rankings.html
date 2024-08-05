@@ -27,14 +27,11 @@
             {% csrf_token %} {{ form.hours }} :{{ form.minutes }}
           </div>
           <button type="submit">Update</button>
+          <a href="{% url 'upload_image' %}">Screenshot Upload</a>
         </form>
       </div>
     </div>
 
-    <div>
-      <a href="{% url 'upload_image' %}">Screenshot Upload</a>
-    </div>
-    
     <div class="homeFilter">
       {% if user.is_authenticated %}
       <button class="filter-btn active" id="allBtn">전체</button>

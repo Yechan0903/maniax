@@ -17,7 +17,7 @@ def upload_image(request):
             request.user.top_apps = top_apps
             request.user.save()
             
-            return redirect('rankings')
+            return redirect('user_profile', user_id=request.user.id)
     else:
         form = ImageUploadForm()
     return render(request, 'upload.html', {'form':form})

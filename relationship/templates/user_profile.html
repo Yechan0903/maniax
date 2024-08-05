@@ -13,19 +13,17 @@
   <div class="profile">
     <a>{{ target_user.username }}</a>
     {% load time_filters %}
-    <p>{{ screen_time.total_minutes|display_time }}</p>
-    
-    <p>Most-used Apps</p>
-    {% if target_user.top_apps %}
-      <ul>
-        {% for app, time in target_user.top_apps %}
-          <li>{{ app }} {{ time }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>Not available. Upload Screentime screenshot</p>
+    <p class="profileUsertime">{{ screen_time.total_minutes|display_time }}</p>
+
+    {% if target_user.top_apps %} {% for app, time in target_user.top_apps %}
+    <p class="profileUserocr">{{ app }} : {{ time }}</p>
+    {% endfor %} {% else %}
+    <p>
+      Screentime<br />
+      Not Updated
+    </p>
     {% endif %}
-    
+
     <div class="userButtons">
       {% if target_user != request.user %}
       <form action="{% url 'follow' user_id=target_user.id %}" method="POST">

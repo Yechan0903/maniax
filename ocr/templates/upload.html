@@ -1,11 +1,33 @@
-{% extends 'base.html' %} {% block title %}Upload Screentime{% endblock %}
-{% block content %}
+{% extends 'base.html' %}{% load static %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/upload.css' %}"
+/><link rel="stylesheet" href="{% static 'css/myinfo/account.css' %}" />
+<!---->
+{% endblock %} {% block title %}Upload Screentime{% endblock %}
+<!---->{% block content %}
 
-<h2>Screentime 캡쳐화면 업로드</h2>
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <input type="file" name="image" accept="image/*">
-  <input type="submit" value="업로드">
-</form>
-
+<div class="header">
+  <div class="left">
+    <a href="{% url 'rankings' %}">
+      <i class="fa-solid fa-angle-left" onclick="goToMorePage()"></i
+    ></a>
+  </div>
+  <div class="center">
+    <span class="title">Screentime 캡쳐화면 업로드</span>
+  </div>
+</div>
+<div class="upload_section">
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input class="upload_buttons" type="file" name="image" accept="image/*" />
+    <input class="upload_buttons hahaha" type="submit" value="업로드" />
+  </form>
+</div>
+<div class="upload_section2">
+  <p>예시</p>
+  <img
+    src="{% static 'images/i.jpg' %}"
+    class="user-component__avatar user-component__avatar--xl"
+  />
+</div>
 {% endblock %}
