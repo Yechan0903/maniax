@@ -29,7 +29,6 @@ def user_profile(request, user_id):
     context = {
         "target_user":target_user,
         "screen_time":screen_time,
-
     }
     return render(request, 'user_profile.html', context)
 

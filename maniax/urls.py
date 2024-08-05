@@ -31,6 +31,7 @@ urlpatterns = [
     path('message/', include('message.urls')),
     path('relationship/', include("relationship.urls")),
     path('following_rankings/', views.following_rankings_view, name="following_rankings_view"),
+    path('ocr/', include('ocr.urls')),
     
     path('myinfo_account/', views.myinfo_account, name='myinfo_account'),
     path('myinfo_alert/', views.myinfo_alert, name='myinfo_alert'),

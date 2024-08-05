@@ -12,10 +12,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+OCR_API_URL = env('OCR_API_URL')
+OCR_SECRET_KEY = env('OCR_SECRET_KEY') 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -24,9 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2^r1y%))%=e$q4!vg0vv7y^$ka0^+c7a%io8h)#6+2^sr*^7w!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['43.200.64.83']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +48,7 @@ INSTALLED_APPS = [
     'group',
     'message',
     'relationship',
+    'ocr',
 ]
 
 AUTH_USER_MODEL = 'main.CustomUser'
@@ -131,6 +138,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'staticfiles')]
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR/"media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

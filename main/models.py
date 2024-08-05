@@ -10,7 +10,9 @@ class CustomUser(AbstractUser):
         symmetrical=False,
         through="relationship.Relationship"
     )
-
+    top_apps = models.JSONField(default=dict, blank=True, null=True)
+    total_screentimes = models.IntegerField(blank=True, null=True)
+    
 class ScreenTime(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='screen_time')
     total_minutes = models.PositiveIntegerField(default=0)  # 스크린 타임 총 분
