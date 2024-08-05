@@ -24,13 +24,12 @@ def follow(request, user_id):
 
 @login_required
 def user_profile(request, user_id):
-    #보려는 프로필의 사용자
+    #보려는 프로필의 사용자는 target_user라고 지칭
     target_user = get_object_or_404(CustomUser, id=user_id)
     screen_time = get_object_or_404(ScreenTime, user=target_user)
     context = {
         "target_user":target_user,
         "screen_time":screen_time,
-        
     }
     return render(request, 'user_profile.html', context)
 

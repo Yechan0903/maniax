@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Screentime 캡쳐화면 업로드</h2>
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="image" accept="image/*">
+  <input type="submit" value="업로드">
+</form>
+
+</body>
+</html>

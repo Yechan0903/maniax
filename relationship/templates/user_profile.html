@@ -3,6 +3,18 @@
 {% block content %}
 <p>{{ target_user.username }}의 프로필</p>
 <p>총 스크린타임: {{ screen_time.total_minutes }}</p>
+<!--<p>이미지로 계산한 총 스크린타임: {{ targe_user.total_screentimes }}</p> -->
+
+{% if target_user.top_apps %}
+    <p>Most-used Apps</p>
+    <ul>
+        {% for part1, part2 in target_user.top_apps %}
+            <li>{{ part1 }} - {{ part2 }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Upload Screentime Image</p>
+{% endif %}
 
 <!--자기자신을 팔로우하는 것을 방지 -->
 {% if target_user != request.user %}
