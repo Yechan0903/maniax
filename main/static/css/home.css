@@ -36,6 +36,11 @@
   padding: 10px 0px;
 }
 
+.timerSection i {
+  margin-left: 20px;
+  font-size: 30px;
+}
+
 .timer {
   display: flex;
   justify-content: center;

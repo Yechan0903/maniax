@@ -69,11 +69,17 @@ def extract_text(image_file):
     return(all_texts)
 
 def parse_text(extracted_texts):
-    exclude_set = {'>', 'M', 'TALK'}
+    exclude_set = {'>', 'M', 'TALK', '카테고리', '최다', '사용', '보기'}
     filtered_texts = [text for text in extracted_texts if text not in exclude_set]
     
     text_results = " ".join(filtered_texts)
-    pattern = re.compile(r'(\w+ \w+|\w+|카카오톡 TALK|TheDayBefore) (\d+시간 \d+분|\d+분)')
+    day_pattern = re.compile(r'(\d+일)')
+    day_match = day_pattern.search(text_results)
+    if day_match:
+        start_index = day_match.end()
+        text_results = text_results[start_index:]
+        
+    pattern = re.compile(r'(\w+ \w+|\w+) (\d+시간 \d+분|\d+분|\d+시간)')
     matches = pattern.findall(text_results) 
     
     formatted_texts = []
