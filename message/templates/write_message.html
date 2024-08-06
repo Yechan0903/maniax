@@ -22,8 +22,14 @@
         name="content"
         placeholder="메세지를 작성하세요"
       ></textarea>
+      {%if limit_reached %} {%else%}
       <button id="submitButton" type="submit" class="send-btnn">전송</button>
+      {%endif%}
     </form>
+    <p>일일 쪽지 횟수 {{ sent_messages_count }}/5</p>
+    {% if limit_reached %}
+    <p class="error">하루 이용가능 메세지를 초과하였습니다</p>
+    {% endif %}
   </div>
 
   <script>

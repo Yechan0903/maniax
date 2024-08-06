@@ -348,6 +348,12 @@ body {
   background-color: #fd7f4a;
 }
 
+.create-group-url {
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
 .goals_hours-input {
   margin-right: 10px;
 }

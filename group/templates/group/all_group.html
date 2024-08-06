@@ -5,12 +5,21 @@
 <div class="groupAddContainer">
   <div class="groupDiv">
     <header class="groupAddHeader">
+      {% if user.is_authenticated %}
       <a
         href="{% url 'my_group' %}"
         class="groupAdd-back-button"
         id="cancelButton"
         >←</a
       >
+      {% else %}
+      <a
+        href="{% url 'rankings' %}"
+        class="groupAdd-back-button"
+        id="cancelButton"
+        >←</a
+      >
+      {% endif %}
       <a class="groupAddTitle">그룹</a>
       <a href="{% url 'search_group' %}" class="groupAdd-search-button">
         <i class="fas fa-search"></i>
@@ -82,7 +91,11 @@
         {{ form.goals_hours }} : {{form.goals_minutes}}
       </div>
       <div class="groupmake-action-buttons">
+        {% if user.is_authenticated %}
         <button type="submit" class="create-group-button">그룹 생성</button>
+        {% else %}
+        <a href="{% url 'login' %}" class="create-group-url">그룹 생성</a>
+        {% endif %}
       </div>
     </form>
   </div>

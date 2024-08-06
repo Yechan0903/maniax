@@ -37,8 +37,11 @@
       </div>
       {% endif %} {% if error_message %}
       <div class="alert alert-danger">{{ error_message }}</div>
-      {% endif %}
+      {% endif %} {% if user.is_authenticated %}
       <button type="submit" class="btn btn-primary">그룹가입</button>
+      {% else %}
+      <a href="{% url 'login' %}" class="create-group-url">그룹가입</a>
+      {% endif %}
     </form>
     {% else %}
     <button class="btn btn-success" disabled>가입완료</button>

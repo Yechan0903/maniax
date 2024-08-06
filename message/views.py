@@ -4,12 +4,33 @@ from .models import message
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required
 from main.models import CustomUser
+from django.utils import timezone
+from datetime import timedelta
 
 #메세지 작성 화면 보여주기
 @login_required
 def write_message(request, user_id):
     receiver = get_object_or_404(CustomUser, id=user_id)
-    return render(request, 'write_message.html', {'user_id':user_id,'receiver':receiver})
+    
+    today_start = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    today_end = today_start + timedelta(days=1)
+
+    sent_messages_count = message.objects.filter(
+        sender=request.user,
+        timestamp__range=(today_start, today_end)
+    ).count()
+    
+    context = {
+        'user_id':user_id,
+        'receiver':receiver,
+        'sent_messages_count': sent_messages_count,
+        'limit_reached': sent_messages_count >= 5,
+    }
+    
+    if sent_messages_count < 5:
+        return render(request, 'write_message.html', context)
+    
+    return render(request, 'write_message.html', context)
 
 #메세지 전송하기
 @login_required

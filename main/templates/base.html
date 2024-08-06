@@ -21,7 +21,11 @@
     <nav class="navbar">
       <ul>
         <li><a href="{% url 'rankings' %}">Home</a></li>
+        {% if user.is_authenticated %}
         <li><a href="{% url 'my_group' %}">Group</a></li>
+        {% else %}
+        <li><a href="{% url 'all_group' %}">Group</a></li>
+        {% endif %}
         <li><a href="{% url 'received_list' %}">Message</a></li>
         <li><a href="{% url 'myinfo' %}">My Info</a></li>
       </ul>

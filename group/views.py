@@ -20,7 +20,6 @@ def my_group(request):
     
     return render(request, 'group/my_group.html', {'page_obj': page_obj})
 
-@login_required
 def all_group(request):
     groups = Group.objects.all().order_by('-created_at')
     
@@ -72,7 +71,7 @@ def create_group(request):
         form = GroupForm()
     return render(request, 'group/create_group.html', {'form': form})
 
-@login_required
+
 def search_group(request):
     query = request.GET.get('q', '')
     groups = Group.objects.all().order_by('-created_at')  # 최신 생성순으로 정렬
@@ -178,7 +177,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from .models import Group
 
-@login_required
+
 def account_group(request, group_id):
     group = get_object_or_404(Group, id=group_id)
     user = request.user
