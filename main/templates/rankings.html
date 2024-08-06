@@ -49,7 +49,7 @@
             href="{% url 'user_profile' user_id=screen_time.user.id %}"
             class="ranking-item"
           >
-            <div class="rank-number">{{ screen_time.rank }}</div>
+            <div class="rank-number">{{ forloop.counter }}</div>
             <div class="rank-name">{{ screen_time.user.username }}</div>
             {% load time_filters %}
             <div class="rank-time">

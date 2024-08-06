@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 import uuid, json, requests, re, time
 from .forms import ImageUploadForm
 from django.conf import settings
+from main.models import ScreenTime
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def upload_image(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
@@ -11,9 +14,15 @@ def upload_image(request):
             image_file = uploaded_image.image.file
             extracted_texts = extract_text(image_file)
             formatted_texts = parse_text(extracted_texts)
-            top3_formatted_texts = formatted_texts[:3]
-            top_apps = split_formatted_texts(top3_formatted_texts)
             
+            total_split_texts = split_formatted_texts(formatted_texts)
+            total_min = calculate_total_minutes(total_split_texts)
+            screen_time, created = ScreenTime.objects.get_or_create(user=request.user)
+            screen_time.total_minutes = total_min
+            screen_time.save()
+            
+            top_formatted_texts = formatted_texts[:3]
+            top_apps = split_formatted_texts(top_formatted_texts)
             request.user.top_apps = top_apps
             request.user.save()
             
@@ -97,6 +106,23 @@ def split_formatted_texts(texts):
         part1, part2 = split_by_time(text)
         split_texts.append((part1.strip(), part2.strip()))
     return split_texts
+
+def calculate_total_minutes(split_texts):
+    hour_pattern = re.compile(r'\d+시간')
+    minute_pattern = re.compile(r'\d+분')
+    total_minutes = 0
+    
+    for app, screentime in split_texts:
+        numbers = re.findall(r'(\d+)', screentime)
+        if len(numbers) == 2:
+            hours = int(numbers[0])
+            minutes = int(numbers[1])
+            total_minutes += hours*60 + minutes
+        if len(numbers) == 1:
+            total_minutes += int(numbers[0])
+    
+    print(total_minutes)
+    return total_minutes
         
         
     
